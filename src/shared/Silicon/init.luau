@@ -1,13 +1,15 @@
 --!strict
 
+--- @class Silicon
+--- A class containing all the methods for Silicon
+local Silicon = {}
+Silicon.__index = Silicon
+
 local Implements = require(script.Modules.Implements)
 
-local silicon = {}
-silicon.__index = silicon
+Silicon["Implements"] = Implements
 
-silicon["Implements"] = Implements
-
-function silicon.Service(
+function Silicon.Service(
 	_name: string
 ): (implementation: { string }) -> (functions: { [string]: (...any) -> any }) -> any
 	return function(_implementations: { string })
@@ -17,4 +19,4 @@ function silicon.Service(
 	end
 end
 
-return silicon
+return Silicon
