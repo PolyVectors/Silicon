@@ -1,22 +1,54 @@
 --!strict
+local Singleton = require(script.Modules.Singleton)
+local Implements = require(script.Modules.Implements)
 
---- @class Silicon
---- A class containing all the methods for Silicon
+--[=[
+	@class Silicon
+	A class containing all the methods and props that are used by Silicon.
+]=]
 local Silicon = {}
 Silicon.__index = Silicon
 
-local Implements = require(script.Modules.Implements)
+--[=[
+	@server
+	@function Service
+	@within Silicon
+
+	@param name string
+	@return (implements: { string | Implements }) -> (functions: { [string]: (...any) -> any }) -> Singleton
+
+	Creates a new Service using currying.
+
+	```lua
+	Service "GreetService" { Implements.OnPlayerAdded } {
+		[Implements.OnStart] = function(player: Player)
+			print(`Hello, {player.Name}`)
+		end
+	}
+	```
+]=]
+Silicon["Service"] = Singleton.Service.Service
+
+--[=[
+	@client
+	@function Controller
+	@within Silicon
+
+	@param name string
+	@return (implements: { string | Implements }) -> (functions: { [string]: (...any) -> any }) -> Singleton
+
+	Creates a new controller using currying.
+
+	```lua
+	Controller "GreetController" { Implements.OnStart } {
+		[Implements.OnStart] = function(player: Player)
+			print(`Hello, {player.Name}`)
+		end
+	}
+	```
+]=]
+Silicon["Controller"] = Singleton.Controller.Controller
 
 Silicon["Implements"] = Implements
-
-function Silicon.Service(
-	_name: string
-): (implementation: { string }) -> (functions: { [string]: (...any) -> any }) -> any
-	return function(_implementations: { string })
-		return function(_functions: { [string]: (...any) -> nil })
-			return nil
-		end
-	end
-end
 
 return Silicon

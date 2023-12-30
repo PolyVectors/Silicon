@@ -14,11 +14,11 @@ title = "🛠️ Easily Extensible"
 description = "Easily add custom events with built in modding support. Inspired by Flamework."
 
 [[home.features]]
-title = "🤔 Simple Design"
+title = "🤔 Simplicity Focused"
 description = "Made to be as easy to learn as possible by abstracting complex concepts (e.g. Networking, Services) while maintaining simple syntax. Inspired by Fusion."
 
 [docusaurus]
-tagline = "A Fusion and Flamework inspired modern game framework created for use in Roblox"
+tagline = "A Fusion, Flamework and Knit inspired modern game framework created for use in Roblox"
 
 [footer]
 style = "dark"

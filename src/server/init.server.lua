@@ -4,8 +4,6 @@ local Silicon = require(ReplicatedStorage.Shared.Silicon)
 local Service = Silicon.Service
 local Implements = Silicon.Implements
 
-Service("TestService")(Implements.OnStart())({
-	OnStart = function()
-		print("Test")
-	end,
+Service("GreetService")({ Implements.OnPlayerAdded })({
+	[Implements.OnPlayerAdded] = function() end,
 })
