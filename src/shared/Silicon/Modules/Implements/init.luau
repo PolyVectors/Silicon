@@ -1,7 +1,16 @@
-local Implementation = {}
+local Implements = {}
+export type Implements = "OnStart" | "OnPlayerAdded" | "OnCharacterAdded"
 
-function Implementation.OnStart()
-	return "OnStart"
+function Implements.OnStart(): { Implements }
+	return { "OnStart" }
 end
 
-return Implementation
+function Implements.OnPlayerAdded(): { Implements }
+	return { "OnPlayerAdded" }
+end
+
+function Implements.OnCharacterAdded(): { Implements }
+	return { "OnCharacterAdded" }
+end
+
+return Implements
