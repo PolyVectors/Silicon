@@ -21,3 +21,4 @@ Service "MyCoolService" Implements.OnStart() {
 
 Silicon.start()
 ```
+> The method `start` under `Silicon` is currently missing
