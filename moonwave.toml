@@ -1,0 +1,25 @@
+title = "Silicon"
+gitRepoUrl = "https://github.com/PolyVectors/Silicon"
+
+[home]
+enabled = true
+includeReadme = false
+
+[[home.features]]
+title = "⚡ Blazingly Fast"
+description = "Written to be as concise as possible, focused on being lightweight and easily maintainable with speed as a consequence."
+
+[[home.features]]
+title = "🛠️ Easily Extensible"
+description = "Easily add custom events with built in modding support. Inspired by Flamework."
+
+[[home.features]]
+title = "🤔 Simple Design"
+description = "Made to be as easy to learn as possible by abstracting complex concepts (e.g. Networking, Services) while maintaining simple syntax. Inspired by Fusion."
+
+[docusaurus]
+tagline = "A Fusion and Flamework inspired modern game framework created for Roblox"
+
+[footer]
+style = "dark"
+copyright = "Copyright © 2023 PolyVector. Built with Moonwave and Docusaurus"
