@@ -1,5 +1,5 @@
 # Silicon
-A [Fusion](https://github.com/dphfox/Fusion) and [Flamework](https://github.com/rbxts-flamework/core) inspired modern game framework created for Roblox.\
+A [Fusion](https://github.com/dphfox/Fusion) and [Flamework](https://github.com/rbxts-flamework/core) inspired modern game framework created for use in Roblox.\
 Written by PolyVector.
 
 ## Documentation
