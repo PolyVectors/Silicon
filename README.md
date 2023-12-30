@@ -3,7 +3,7 @@ A [Fusion](https://github.com/dphfox/Fusion) and [Flamework](https://github.com/
 Written by PolyVector.
 
 ## Documentation
-Documentation, guides and the API Reference will be hosted under [silicon.polyvector.xyz](https://silicon.polyvector.xyz) when I believe the documentation is written to a cohesive and easily readable standard and a release is available under the releases section.
+Documentation, guides and the API Reference will be hosted under [silicon.polyvector.xyz](https://silicon.polyvector.xyz) when the documentation is written to a cohesive and easily readable standard and a release is available under the releases section.
 
 ## Warning
 |❗Do not use this framework right now❗|
