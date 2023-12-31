@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Silicon Compared To Other Frameworks
+# Silicon Versus Other Frameworks
 
 This page is a small collection of examples from frameworks that were huge inspirations for Silicon compared to a versions that were ported to Silicon itself.
 
@@ -61,7 +61,7 @@ Service "MoneyService" {} {
 
 Silicon.Start():catch(warn)
 ```
-> Silicon 0.0.1.alpha.2
+> Silicon 0.1.0.alpha.3
 
 ## Boilerplate Showcase (from [Flamework](https://github.com/rbxts-flamework/core))
 
@@ -81,4 +81,4 @@ or an alternative:
 ```lua
 Service "MyService" { Implements.None } {}
 ```
-> Silicon 0.0.1.alpha.2
+> Silicon 0.1.0.alpha.3
