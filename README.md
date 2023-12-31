@@ -11,11 +11,12 @@ A [Fusion](https://github.com/dphfox/Fusion), [Flamework](https://github.com/rbx
 Documentation, guides and the API Reference will be hosted under [silicon.polyvector.xyz](https://silicon.polyvector.xyz) when the documentation is written to a cohesive and easily readable standard and a release is available under the releases section.
 > [!WARNING]
 > Documentation for Silicon is mostly hypothetical and real code has most likely not been written for a majority of mentioned features, check the API reference for implemented features.
-
+> 
+##
 <!--moonwave-hide-before-this-line-->
-## Example
-<div>
-    <img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/example.svg?raw=true" width="512"/>
-</div>
 
-> This code creates a simple service that greets the player upon joining through server-side output.
+<div align="center">
+    <img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/example.svg?raw=true" width="512"/>
+
+This code creates a simple service that greets the player upon joining (through server-side output).
+</div>
