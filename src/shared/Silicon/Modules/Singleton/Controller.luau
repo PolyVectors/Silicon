@@ -27,7 +27,7 @@ Controller.Controllers = {} :: Singleton
 	@within Controller
 
 	@param name string
-	@return (implements: { string | Implements }) -> (functions: { [string | Implements]: (...any) -> any }) -> Option<Singleton>
+	@return (implements: { string | Implements }) -> (functions: { [string | Implements]: (...any) -> any }) -> Singleton
 
 	Creates a new controller using currying syntax.
 
