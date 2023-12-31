@@ -20,7 +20,7 @@ Silicon._clientStarted = false
 --[=[
 	@server
 	@function Service
-	@within Service
+	@within Silicon
 
 	@param name string
 	@return (implements: { string | Implements }) -> (functions: { [string | Implements]: (...any) -> any }) -> Singleton
