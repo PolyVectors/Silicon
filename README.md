@@ -1,5 +1,5 @@
 # Silicon
-<img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/.moonwave/static/logo.png?raw=true" width="128">
+<img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/logo.png?raw=true" width="128">
 <br>
 
 A [Fusion](https://github.com/dphfox/Fusion), [Flamework](https://github.com/rbxts-flamework/core) and [Knit](https://github.com/Sleitnick/Knit) inspired modern game framework created for use in Roblox.
@@ -12,14 +12,7 @@ Documentation, guides and the API Reference will be hosted under [silicon.polyve
 > [!WARNING]
 > Documentation for Silicon is mostly hypothetical and real code has most likely not been written for a majority of mentioned features, check the API reference for implemented features.
 
-## Example
-```lua
-Service "GreetService" { Implements.OnPlayerAdded } {
-    [Implements.OnPlayerAdded] = function(player: Player)
-        print(`Hello, {Player.Name}`)
-    end
-}
+<!--moonwave-hide-before-this-line-->
 
-Silicon.start()
-```
-> The method `start` under `Silicon` is currently missing
+## Example
+<img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/example.png?raw=true">

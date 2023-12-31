@@ -3,7 +3,7 @@ gitRepoUrl = "https://github.com/PolyVectors/Silicon"
 
 [home]
 enabled = true
-includeReadme = false
+includeReadme = true
 
 [[home.features]]
 title = "⚡ Blazingly Fast"
