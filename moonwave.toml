@@ -17,6 +17,13 @@ description = "Easily add custom events and middleware with built in modding sup
 title = "🤔 Simplicity Focused"
 description = "Designed to be simple by abstracting complex concepts (e.g. Networking, Services) while maintaining simple syntax, inspired by Fusion."
 
+[navbar]
+title = ""
+
+[navbar.logo]
+src = "/logo.png"
+alt = "Silicon"
+
 [docusaurus]
 favicon = "/favicon.png"
 tagline = "A Fusion, Flamework and Knit inspired modern game framework created for use in Roblox"
