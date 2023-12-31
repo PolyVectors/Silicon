@@ -7,14 +7,14 @@ includeReadme = true
 
 [[home.features]]
 title = "⚡ Blazingly Fast"
-description = "Written to be as concise as possible, focused on being lightweight and easily maintainable with speed as a consequence, inspired by Knit."
+description = "Singletons are designed to be simple tables of functions and events, focused on being lightweight with speed as a consequence, inspired by Knit."
 
 [[home.features]]
-title = "🛠️ Easily Extensible"
-description = "Easily add custom events and middleware with built in modding support, inspired by Flamework."
+title = "🛠️ Minimal Boilerplate"
+description = "Create services and controllers with minimal boilerplate, inspired by Flamework."
 
 [[home.features]]
-title = "🤔 Simplicity Focused"
+title = "🤔 Simple Design"
 description = "Designed to be simple by abstracting complex concepts (e.g. Networking, Services) while maintaining simple syntax, inspired by Fusion."
 
 [navbar]

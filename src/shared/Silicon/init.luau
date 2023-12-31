@@ -1,5 +1,11 @@
 --!strict
-local Singleton = require(script.Modules.Singleton)
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+local Promise = require(ReplicatedStorage.Packages.promise)
+
+local Service = require(script.Modules.Singleton.Service)
+local Controller = require(script.Modules.Singleton.Controller)
+
 local Implements = require(script.Modules.Implements)
 
 --[=[
@@ -7,27 +13,30 @@ local Implements = require(script.Modules.Implements)
 	A class containing all the methods and props that are used by Silicon.
 ]=]
 local Silicon = {}
-Silicon.__index = Silicon
+
+Silicon._serverStarted = false
+Silicon._clientStarted = false
 
 --[=[
 	@server
 	@function Service
-	@within Silicon
+	@within Service
 
 	@param name string
-	@return (implements: { string | Implements }) -> (functions: { [string]: (...any) -> any }) -> Singleton
+	@return (implements: { string | Implements }) -> (functions: { [string | Implements]: (...any) -> any }) -> Singleton
 
-	Creates a new Service using currying.
+	Creates a new Service using currying syntax.
 
 	```lua
 	Service "GreetService" { Implements.OnPlayerAdded } {
-		[Implements.OnStart] = function(player: Player)
+		[Implements.OnPlayerAdded] = function(player: Player)
 			print(`Hello, {player.Name}`)
 		end
 	}
 	```
 ]=]
-Silicon["Service"] = Singleton.Service.Service
+Silicon["Service"] = Service.Service
+Silicon["AddService"] = Service.AddService
 
 --[=[
 	@client
@@ -35,9 +44,9 @@ Silicon["Service"] = Singleton.Service.Service
 	@within Silicon
 
 	@param name string
-	@return (implements: { string | Implements }) -> (functions: { [string]: (...any) -> any }) -> Singleton
+	@return (implements: { string | Implements }) -> (functions: { [string | Implements]: (...any) -> any }) -> Singleton
 
-	Creates a new controller using currying.
+	Creates a new controller using currying syntax.
 
 	```lua
 	Controller "GreetController" { Implements.OnStart } {
@@ -47,8 +56,21 @@ Silicon["Service"] = Singleton.Service.Service
 	}
 	```
 ]=]
-Silicon["Controller"] = Singleton.Controller.Controller
+Silicon["Controller"] = Controller.Controller
+Silicon["AddController"] = Controller.AddController
 
 Silicon["Implements"] = Implements
+
+function Silicon.Start()
+	return Promise.new(function(resolve)
+		if RunService:IsServer() then
+			Silicon._serverStarted = true
+			resolve()
+		else
+			Silicon._clientStarted = true
+			resolve()
+		end
+	end)
+end
 
 return Silicon

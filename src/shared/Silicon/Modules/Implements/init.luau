@@ -1,11 +1,11 @@
 --!strict
 
 --- @class Implements
---- A subclass contained under the main Silicon class that handles the implementation for default events
+--- A subclass contained under the main Silicon class that handles the implementation for default events.
 local Implements = {}
 
 --[=[
-	This type dictates all of the default events that can be implemented into a Service
+	This type dictates all of the default events that can be implemented into a Service or Controller.
 	@within Implements
 
 	@type Implements "OnStart" | "OnPlayerAdded" | "OnCharacterAdded"
@@ -13,27 +13,35 @@ local Implements = {}
 export type Implements = "OnStart" | "OnPlayerAdded" | "OnCharacterAdded"
 
 --[=[
-	Default implementation
+	An implementation that fires when Silicon starts.
 
 	@within Implements
 	@prop OnStart Implements
 ]=]
-Implements.OnStart = "OnStart"
+Implements.OnStart = "_OnStart"
 
 --[=[
-	Default implementation
+	An implementation that passes in players as arguments each time the Players.PlayerAdded signal is fired.
 
 	@within Implements
 	@prop OnStart Implements
 ]=]
-Implements.OnPlayerAdded = "OnPlayerAdded"
+Implements.OnPlayerAdded = "_OnPlayerAdded"
 
 --[=[
-	Default implementation
+	An implementation that passes in players as arguments each time the Players.PlayerAdded signal is fired.
 
 	@within Implements
 	@prop OnStart Implements
 ]=]
-Implements.OnCharacterAdded = "OnCharacterAdded"
+Implements.OnCharacterAdded = "_OnCharacterAdded"
+
+function Implements.GetImplements(): { [Implements]: Implements }
+	return {
+		[Implements.OnStart] = Implements.OnStart,
+		[Implements.OnPlayerAdded] = Implements.OnPlayerAdded,
+		[Implements.OnCharacterAdded] = Implements.OnCharacterAdded,
+	}
+end
 
 return Implements
