@@ -6,7 +6,7 @@ local Implements = {}
 
 --[=[
 	@within Implements
-	@type Implements "OnStart" | "OnPlayerAdded" | "OnCharacterAdded"
+	@type Implements "OnStart" | "OnPlayerAdded" | "OnCharacterAdded" | "None"
 
 	This type dictates all of the default events that can be implemented into a Service or Controller.
 ]=]
