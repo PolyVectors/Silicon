@@ -1,10 +1,10 @@
 # Silicon
-<p align="center">
-    <img align="center" src="https://raw.githubusercontent.com/PolyVectors/Silicon/main/.moonwave/static/logo.png?token=GHSAT0AAAAAACMFC74HYCRY64PMONIPWG2KZMQXA7A" width="128">
 <div align="center">
+    <img align="center" src="https://raw.githubusercontent.com/PolyVectors/Silicon/main/.moonwave/static/logo.png?token=GHSAT0AAAAAACMFC74HYCRY64PMONIPWG2KZMQXA7A" width="128" style="padding-bottom: 15px" />
 
 A [Fusion](https://github.com/dphfox/Fusion), [Flamework](https://github.com/rbxts-flamework/core) and [Knit](https://github.com/Sleitnick/Knit) inspired modern game framework created for use in Roblox.\
 Written by PolyVector.
+</div>
 
 ## Documentation
 Documentation, guides and the API Reference will be hosted under [silicon.polyvector.xyz](https://silicon.polyvector.xyz) when the documentation is written to a cohesive and easily readable standard and a release is available under the releases section.
