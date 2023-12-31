@@ -17,3 +17,5 @@ Documentation, guides and the API Reference will be hosted under [silicon.polyve
 <div>
     <img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/example.svg?raw=true" width="512"/>
 </div>
+
+> This code creates a simple service that greets the player upon joining through server-side output.
