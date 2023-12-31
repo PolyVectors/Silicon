@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Silicon Compared To Other Frameworks
 
-This page is a small collection of examples from frameworks that were huge inspirations for Silicon compared to a versions I have ported to Silicon itself.
+This page is a small collection of examples from frameworks that were huge inspirations for Silicon compared to a versions that were ported to Silicon itself.
 
 ## Money Service (from [Knit](https://github.com/Sleitnick/Knit))
 ```lua
