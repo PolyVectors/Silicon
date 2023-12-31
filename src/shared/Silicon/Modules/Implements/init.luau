@@ -5,42 +5,46 @@
 local Implements = {}
 
 --[=[
-	This type dictates all of the default events that can be implemented into a Service or Controller.
 	@within Implements
-
 	@type Implements "OnStart" | "OnPlayerAdded" | "OnCharacterAdded"
+
+	This type dictates all of the default events that can be implemented into a Service or Controller.
 ]=]
 export type Implements = "OnStart" | "OnPlayerAdded" | "OnCharacterAdded" | "None"
 
 --[=[
-	An implementation that fires when Silicon starts.
-
 	@within Implements
 	@prop OnStart Implements
+	@readonly
+
+	An implementation that fires when Silicon starts.
 ]=]
 Implements.OnStart = "_OnStart"
 
 --[=[
-	An implementation that passes in players as arguments each time the Players.PlayerAdded signal is fired.
-
 	@within Implements
 	@prop OnPlayerAdded Implements
+	@readonly
+
+	An implementation that passes in players as arguments each time the Players.PlayerAdded signal is fired.
 ]=]
 Implements.OnPlayerAdded = "_OnPlayerAdded"
 
 --[=[
-	An implementation that passes in players as arguments each time the Players.PlayerAdded signal is fired.
-
 	@within Implements
 	@prop OnCharacterAdded Implements
+	@readonly
+
+	An implementation that passes in players as arguments each time the Players.PlayerAdded signal is fired.
 ]=]
 Implements.OnCharacterAdded = "_OnCharacterAdded"
 
 --[=[
-	Does nothing.
-
 	@within Implements
 	@prop None Implements
+	@readonly
+
+	Does nothing.
 ]=]
 Implements.None = ""
 

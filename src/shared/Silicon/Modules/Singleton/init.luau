@@ -11,6 +11,7 @@ local Singleton = {}
 --[=[
 	@within Singleton
 	@type Singleton { _Name: string, _Implements: { Implements.Implements | string }, _Functions: { [string]: (...any) -> any } }
+	@private
 
 	This type denotes a generic type which can be derived to define a Service or a Controller.
 ]=]
