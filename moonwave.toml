@@ -18,6 +18,7 @@ title = "🤔 Simplicity Focused"
 description = "Made to be as easy to learn as possible by abstracting complex concepts (e.g. Networking, Services) while maintaining simple syntax. Inspired by Fusion."
 
 [docusaurus]
+favicon = "./assets/favicon"
 tagline = "A Fusion, Flamework and Knit inspired modern game framework created for use in Roblox"
 
 [footer]
