@@ -10,7 +10,7 @@ local Implements = {}
 
 	@type Implements "OnStart" | "OnPlayerAdded" | "OnCharacterAdded"
 ]=]
-export type Implements = "OnStart" | "OnPlayerAdded" | "OnCharacterAdded"
+export type Implements = "OnStart" | "OnPlayerAdded" | "OnCharacterAdded" | "None"
 
 --[=[
 	An implementation that fires when Silicon starts.
@@ -24,7 +24,7 @@ Implements.OnStart = "_OnStart"
 	An implementation that passes in players as arguments each time the Players.PlayerAdded signal is fired.
 
 	@within Implements
-	@prop OnStart Implements
+	@prop OnPlayerAdded Implements
 ]=]
 Implements.OnPlayerAdded = "_OnPlayerAdded"
 
@@ -32,9 +32,17 @@ Implements.OnPlayerAdded = "_OnPlayerAdded"
 	An implementation that passes in players as arguments each time the Players.PlayerAdded signal is fired.
 
 	@within Implements
-	@prop OnStart Implements
+	@prop OnCharacterAdded Implements
 ]=]
 Implements.OnCharacterAdded = "_OnCharacterAdded"
+
+--[=[
+	Does nothing.
+
+	@within Implements
+	@prop None Implements
+]=]
+Implements.None = ""
 
 function Implements.GetImplements(): { [Implements]: Implements }
 	return {
