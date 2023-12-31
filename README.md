@@ -15,9 +15,9 @@ Documentation, guides and the API Reference will be hosted under [silicon.polyve
 
 ## Example
 ```lua
-Service "MyCoolService" { Implements.OnStart } {
-    [Implements.OnStart] = function()
-        print("Game has started!")
+Service "GreetService" { Implements.OnPlayerAdded } {
+    [Implements.OnPlayerAdded] = function(player: Player)
+        print(`Hello, {Player.Name}`)
     end
 }
 
