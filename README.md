@@ -1,6 +1,6 @@
 # Silicon
 <div align="center">
-    <img align="center" src="https://raw.githubusercontent.com/PolyVectors/Silicon/main/.moonwave/static/logo.png?token=GHSAT0AAAAAACMFC74HYCRY64PMONIPWG2KZMQXA7A" width="128" style="padding-bottom: 15px" />
+    <img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/.moonwave/static/logo.png?raw=true" width="128" style="padding-bottom: 15px" />
 
 A [Fusion](https://github.com/dphfox/Fusion), [Flamework](https://github.com/rbxts-flamework/core) and [Knit](https://github.com/Sleitnick/Knit) inspired modern game framework created for use in Roblox.\
 Written by PolyVector.
