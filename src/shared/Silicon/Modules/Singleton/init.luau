@@ -7,7 +7,7 @@ type Implements = Implements.Implements
 
 --[=[
 	@class Singleton
-	A generic class used to create Services/Controllers internally
+	A generic class used to create Services/Controllers internally.
 ]=]
 local Singleton = {}
 
