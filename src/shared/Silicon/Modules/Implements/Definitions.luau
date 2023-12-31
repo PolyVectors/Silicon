@@ -1,12 +1,12 @@
 --!strict
 
 --- @class ImplementsDefinitions
---- Contains the definitions for the default implementations
+--- Contains the definitions for the default implementations.
 local ImplementsDefinitions = {}
 ImplementsDefinitions.__index = ImplementsDefinitions
 
 function ImplementsDefinitions._OnStart(implementFunction: (...any) -> any)
-	implementFunction("Test string")
+	implementFunction()
 end
 
 return ImplementsDefinitions
