@@ -13,6 +13,7 @@ Documentation, guides and the API Reference will be hosted under [silicon.polyve
 > Documentation for Silicon is mostly hypothetical and real code has most likely not been written for a majority of mentioned features, check the API reference for implemented features.
 
 <!--moonwave-hide-before-this-line-->
-
 ## Example
-<img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/example.png?raw=true">
+<div>
+    <img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/example.png?raw=true" width="512"/>
+</div>
