@@ -7,18 +7,18 @@ includeReadme = false
 
 [[home.features]]
 title = "⚡ Blazingly Fast"
-description = "Written to be as concise as possible, focused on being lightweight and easily maintainable with speed as a consequence."
+description = "Written to be as concise as possible, focused on being lightweight and easily maintainable with speed as a consequence, inspired by Knit."
 
 [[home.features]]
 title = "🛠️ Easily Extensible"
-description = "Easily add custom events with built in modding support. Inspired by Flamework."
+description = "Easily add custom events and middleware with built in modding support, inspired by Flamework."
 
 [[home.features]]
 title = "🤔 Simplicity Focused"
-description = "Made to be as easy to learn as possible by abstracting complex concepts (e.g. Networking, Services) while maintaining simple syntax. Inspired by Fusion."
+description = "Designed to be simple by abstracting complex concepts (e.g. Networking, Services) while maintaining simple syntax, inspired by Fusion."
 
 [docusaurus]
-favicon = "./assets/favicon"
+favicon = "/favicon.png"
 tagline = "A Fusion, Flamework and Knit inspired modern game framework created for use in Roblox"
 
 [footer]
