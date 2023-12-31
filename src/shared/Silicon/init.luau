@@ -65,11 +65,11 @@ function Silicon.Start()
 	return Promise.new(function(resolve)
 		if RunService:IsServer() then
 			Silicon._serverStarted = true
-			resolve()
 		else
 			Silicon._clientStarted = true
-			resolve()
 		end
+
+		resolve()
 	end)
 end
 
