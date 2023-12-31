@@ -1,6 +1,6 @@
 # Silicon
 <p align="center">
-    <img align="center" src="https://raw.githubusercontent.com/PolyVectors/Silicon/main/.moonwave/static/logo.png?token=GHSAT0AAAAAACMFC74HYCRY64PMONIPWG2KZMQXA7A" width="1024">
+    <img align="center" src="https://raw.githubusercontent.com/PolyVectors/Silicon/main/.moonwave/static/logo.png?token=GHSAT0AAAAAACMFC74HYCRY64PMONIPWG2KZMQXA7A" width="128">
 <div align="center">
 
 A [Fusion](https://github.com/dphfox/Fusion), [Flamework](https://github.com/rbxts-flamework/core) and [Knit](https://github.com/Sleitnick/Knit) inspired modern game framework created for use in Roblox.\
@@ -17,8 +17,8 @@ Documentation, guides and the API Reference will be hosted under [silicon.polyve
 
 ## Example
 ```lua
-Service "MyCoolService" Implements.OnStart() {
-    OnStart = function()
+Service "MyCoolService" { Implements.OnStart } {
+    [Implements.OnStart] = function()
         print("Game has started!")
     end
 }
