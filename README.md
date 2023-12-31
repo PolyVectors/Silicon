@@ -1,5 +1,5 @@
 # Silicon
-<img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/logo.svg?raw=true" width="128">
+<img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/logo.png?raw=true" width="128">
 <br>
 
 A [Fusion](https://github.com/dphfox/Fusion), [Flamework](https://github.com/rbxts-flamework/core) and [Knit](https://github.com/Sleitnick/Knit) inspired modern game framework created for use in Roblox.
@@ -15,5 +15,5 @@ Documentation, guides and the API Reference will be hosted under [silicon.polyve
 <!--moonwave-hide-before-this-line-->
 ## Example
 <div>
-    <img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/example.png?raw=true" width="512"/>
+    <img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/example.svg?raw=true" width="512"/>
 </div>
