@@ -44,20 +44,11 @@ function Controller.Controller(name: string): (
 ) -> (props: { [string | Implements]: (...any) -> any }) -> Singleton
 	return function(implements: { string | Implements })
 		return function(props: { [string]: (...any) -> nil })
-			local controller: Option<Singleton> = Option.None
-
 			if RunService:IsClient() then
-				controller = Option.Some({
-					_name = name,
-					_implements = implements,
-					_props = props,
-				} :: Singleton)
-			end
-
-			return controller:UnwrapOrElse(function(): Singleton
-				warn("[Silicon/Singleton/Controller] Controllers can only be created on the client.")
+				return Singleton._new(name, implements, props)
+			else
 				return {}
-			end)
+			end
 		end
 	end
 end
@@ -79,9 +70,6 @@ function Controller.AddController(controller: Singleton)
 			end
 		end
 	end
-
-	setmetatable(Controller.Controllers[controller._name], Controller.Controllers[controller._name])
-	Controller.Controllers[controller._name].__index = Controller.Controllers[controller._name]._props
 
 	return Controller.Controllers[controller._name]
 end
