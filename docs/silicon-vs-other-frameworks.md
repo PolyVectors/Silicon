@@ -39,19 +39,21 @@ Silicon takes this idea, an example of inspiration taken from Knit.
 
 ```lua
 local Silicon = require(game:GetService("ReplicatedStorage").Packages.Silicon)
-local Service = Silicon.Service
+
+local Service = Silicon.Service.Service
+local Implements = Silicon.Implements
 
 --- Create the service:
-Service "MoneyService" {} {
+Service "MoneyService" { Implements.None } {
     -- Add some methods to the service:
 
-    "GetMoney" = function(player: Player)
+    GetMoney = function(player: Player)
         -- Do some sort of data fetch
 	    local money = someDataStore:GetAsync("money")
 	    return money
     end
 
-    "GiveMoney" = function()
+    GiveMoney = function()
         -- Do some sort of data fetch
         local money = self:GetMoney(player: Player, amount: string)
         money += amount

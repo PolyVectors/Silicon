@@ -19,7 +19,7 @@ type Implements = Implements.Implements
     A class derived from singletons meant for use on the Client.
 ]=]
 local Controller = {}
-Controller.Controllers = {} :: Singleton
+Controller.Controllers = {} :: { Singleton }
 
 --[=[
 	@client
@@ -27,7 +27,7 @@ Controller.Controllers = {} :: Singleton
 	@within Controller
 
 	@param name string
-	@return (implements: { string | Implements }) -> (functions: { [string | Implements]: (...any) -> any }) -> Singleton
+	@return (implements: { string | Implements }) -> (props: { [string | Implements]: (...any) -> any | props }) -> Singleton
 
 	Creates a new controller using currying syntax.
 
@@ -41,16 +41,16 @@ Controller.Controllers = {} :: Singleton
 ]=]
 function Controller.Controller(name: string): (
 	implements: { string | Implements }
-) -> (functions: { [string | Implements]: (...any) -> any }) -> Singleton
+) -> (props: { [string | Implements]: (...any) -> any }) -> Singleton
 	return function(implements: { string | Implements })
-		return function(functions: { [string]: (...any) -> nil })
+		return function(props: { [string]: (...any) -> nil })
 			local controller: Option<Singleton> = Option.None
 
 			if RunService:IsClient() then
 				controller = Option.Some({
 					_name = name,
 					_implements = implements,
-					_functions = functions,
+					_props = props,
 				} :: Singleton)
 			end
 
@@ -72,7 +72,7 @@ function Controller.AddController(controller: Singleton)
 
 	Controller.Controllers[controller._name] = controller
 
-	for functionName, implementFunction in controller._functions do
+	for functionName, implementFunction in controller._props do
 		for _, implement in controller._implements do
 			if functionName == implement then
 				ImplementsDefinitions[functionName](implementFunction)
@@ -81,7 +81,7 @@ function Controller.AddController(controller: Singleton)
 	end
 
 	setmetatable(Controller.Controllers[controller._name], Controller.Controllers[controller._name])
-	Controller.Controllers[controller._name].__index = Controller.Controllers[controller._name]._functions
+	Controller.Controllers[controller._name].__index = Controller.Controllers[controller._name]._props
 
 	return Controller.Controllers[controller._name]
 end

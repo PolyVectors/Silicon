@@ -23,7 +23,7 @@ Silicon._clientStarted = false
 	@within Silicon
 
 	@param name string
-	@return (implements: { string | Implements }) -> (functions: { [string | Implements]: (...any) -> any }) -> Singleton
+	@return (implements: { string | Implements }) -> (props: { [string | Implements]: (...any) -> any } | props) -> Singleton
 
 	Creates a new Service using currying syntax.
 
@@ -35,8 +35,12 @@ Silicon._clientStarted = false
 	}
 	```
 ]=]
-Silicon["Service"] = Service.Service
-Silicon["AddService"] = Service.AddService
+Silicon["Service"] = {
+	Service = Service.Service,
+	AddService = Service.AddService,
+	AddServices = Service.AddServices,
+	AddServicesFolder = Service.AddServicesFolder,
+}
 
 --[=[
 	@client
@@ -44,7 +48,7 @@ Silicon["AddService"] = Service.AddService
 	@within Silicon
 
 	@param name string
-	@return (implements: { string | Implements }) -> (functions: { [string | Implements]: (...any) -> any }) -> Singleton
+	@return (implements: { string | Implements }) -> (props: { [string | Implements]: (...any) -> any | props}) -> Singleton
 
 	Creates a new controller using currying syntax.
 
@@ -63,7 +67,7 @@ Silicon["Implements"] = Implements
 
 function Silicon.Start()
 	return Promise.new(function(resolve)
-		if RunService:IsServer() then
+		if RunService:IsClient() then
 			Silicon._serverStarted = true
 		else
 			Silicon._clientStarted = true

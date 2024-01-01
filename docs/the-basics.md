@@ -39,5 +39,20 @@ It can also be written like this:
 Controller("MyController")({})({})
 ```
 
-## Names are important
-When creating a singleton (either a Service or Controller)
+## Props
+In Silicon, a Prop is either a field or a method underneath a Singleton.
+Props can come in very useful when creating a Singleton.
+This is because these values stay the same across all methods and can all read eachother.
+The following is an example of prop usage.
+
+```lua
+local CounterService = Service "CounterService" { Implements.OnPlayerAdded } {
+    PlayerCount = 0
+}
+
+CounterService:AddProp (Implements.OnPlayerAdded) (function(player: Player)
+    CounterService:SetProp "PlayerCount" (function(oldValue: number)
+        return oldValue + 1
+    end)
+end)
+```
