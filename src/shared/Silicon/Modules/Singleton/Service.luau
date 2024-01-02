@@ -63,7 +63,7 @@ function Service.AddService(service: Singleton)
 
 	Service.Services[service._name] = service
 
-	for functionName, implementFunction in service._props do
+	for functionName, implementFunction in service do
 		for _, implement in service._implements do
 			if functionName == implement then
 				ImplementsDefinitions[functionName](implementFunction)

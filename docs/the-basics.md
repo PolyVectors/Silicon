@@ -17,11 +17,11 @@ local Service = Silicon.Service
 
 Service "MyService" {} {}
 ```
-> This is the minimum amount of required syntax to create a service using Silicon.
+> This is the minimum amount of required code to create a service using Silicon.
 
 From here on imports will be hidden for clarity.
 
-Although this syntax works and can be read by the Luau compiler, some may prefer to use the following syntax instead, as it uses syntax accepted by formatted:
+Although this code works and can be read by the Luau interpreter, some may prefer to use the following syntax instead as it uses syntax accepted by formatters such as StyLua by default:
 ```lua
 -- //snip//
 Service("MyService")({})({})
@@ -40,19 +40,51 @@ Controller("MyController")({})({})
 ```
 
 ## Props
-In Silicon, a Prop is either a field or a method underneath a Singleton.
+In Silicon, a Prop is either a property or a method underneath a Singleton.
 Props can come in very useful when creating a Singleton.
 This is because these values stay the same across all methods and can all read eachother.
-The following is an example of prop usage.
+The following is an example of prop usage:
 
 ```lua
-local CounterService = Service "CounterService" { Implements.OnPlayerAdded } {
-    PlayerCount = 0
+local CounterService
+
+CounterService = Service "CounterService" { Implements.OnPlayerAdded } {
+    PlayerCount = 0,
+
+    [Implements.OnPlayerAdded] = function()
+        Counter
+    end
+}
+```
+
+You can also create methods by directly adding them into the list of props when you initalise your service.
+The following is example usage of methods.
+
+```lua
+local MethodTestingService
+
+MethodTestingService = Service "MethodTestingService" { Implements.OnStart } {
+    MyMethod = function(value: string)
+	    print(`Here is your value: "{value}"`)
+    end
+
+	[Implements.OnStart] = function()
+		MethodTestingService.MyMethod()
+	end,
+}
+```
+or, alternatively:
+
+```lua
+local MethodTestingService
+
+MethodTestingService = Service "MethodTestingService" { Implements.OnStart } {
+	[Implements.OnStart] = function()
+		MethodTestingService.MyMethod()
+	end,
 }
 
-CounterService:AddProp (Implements.OnPlayerAdded) (function(player: Player)
-    CounterService:SetProp "PlayerCount" (function(oldValue: number)
-        return oldValue + 1
-    end)
-end)
+function MethodTestingService.MyMethod()
+    print("Hello, world")
+end
 ```

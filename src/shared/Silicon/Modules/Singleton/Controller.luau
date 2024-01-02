@@ -63,7 +63,7 @@ function Controller.AddController(controller: Singleton)
 
 	Controller.Controllers[controller._name] = controller
 
-	for functionName, implementFunction in controller._props do
+	for functionName, implementFunction in controller do
 		for _, implement in controller._implements do
 			if functionName == implement then
 				ImplementsDefinitions[functionName](implementFunction)

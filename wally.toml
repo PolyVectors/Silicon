@@ -1,6 +1,6 @@
 [package]
 name = "poly/silicon"
-version = "0.1.0-alpha.4"
+version = "0.1.0-alpha.5"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 
