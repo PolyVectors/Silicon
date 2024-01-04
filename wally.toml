@@ -6,4 +6,3 @@ realm = "shared"
 
 [dependencies]
 promise = "evaera/promise@4.0.0"
-option = "grilme99/option@1.0.5"

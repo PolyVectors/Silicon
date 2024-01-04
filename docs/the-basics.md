@@ -27,7 +27,7 @@ Although this code works and can be read by the Luau interpreter, some may prefe
 Service("MyService")({})({})
 ```
 
-## Controller
+## Controllers
 Creating a controller in Silicon it is essentially the same, except the `Service` method is swapped out for the `Controller` method.
 
 ```lua
@@ -52,7 +52,7 @@ CounterService = Service "CounterService" { Implements.OnPlayerAdded } {
     PlayerCount = 0,
 
     [Implements.OnPlayerAdded] = function()
-        Counter
+        CounterService.PlayerCount += 1
     end
 }
 ```
@@ -88,3 +88,46 @@ function MethodTestingService.MyMethod()
     print("Hello, world")
 end
 ```
+
+## Bridges
+
+Silicon works off of a "bridge" model, where data between services and controllers are defined and generated before usage.
+Under the hood, bridges are turned into sets of RemoteFunctions neatly organised under ReplicatedStorage.
+Here is an example of a simple bridge that allows for communication between a greeting service and a greeting controller:
+
+```lua
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local GreetingBridge = require(ReplicatedStorage.Shared.GreetingBridge
+
+local GreetingController
+
+GreetingController = Controller "GreetingController" { Implements.OnStart } {
+    GreetPlayer = function(username: string)
+        print(`Hello, {username}!`)
+    end,
+}
+```
+> src/client/GreetingController
+
+```lua
+local GreetingController = require(ReplicatedStorage.Client.GreetingController)
+
+return Bridge "GreetingBridge" { BridgeType.ServerToClient } {
+    [BridgeType.ServerToClient] = GreetingController.GreetPlayer
+}
+```
+> src/shared/GreetingBridge
+
+```lua
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local GreetingBridge = require(ReplicatedStorage.Shared.GreetingBridge)
+
+local GreetingService
+
+GreetingService = Service "GreetingService" { Implements.OnPlayerAdded } {
+    [Implements.OnPlayerAdded] = function(player: Player)
+        GreetingBridge:Fire(player.Name)
+    end
+}
+```
+> src/server/GreetingService

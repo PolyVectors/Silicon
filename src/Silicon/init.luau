@@ -1,10 +1,12 @@
---!strict
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 local Promise = require(ReplicatedStorage.Packages.promise)
 
 local Service = require(script.Modules.Singleton.Service)
 local Controller = require(script.Modules.Singleton.Controller)
+
+local Bridge = require(script.Modules.Bridge)
+local EventType = require(script.Modules.Bridge.EventType)
 
 local Implements = require(script.Modules.Implements)
 
@@ -40,6 +42,7 @@ Silicon["Service"] = {
 	AddService = Service.AddService,
 	AddServices = Service.AddServices,
 	AddServicesFolder = Service.AddServicesFolder,
+	GetServiceEvents = Service.GetServiceEvents,
 }
 
 --[=[
@@ -60,8 +63,19 @@ Silicon["Service"] = {
 	}
 	```
 ]=]
-Silicon["Controller"] = Controller.Controller
-Silicon["AddController"] = Controller.AddController
+Silicon["Controller"] = {
+	Controller = Controller.Controller,
+	AddController = Controller.AddController,
+	AddControllers = Controller.AddControllers,
+	AddControllersFolder = Controller.AddControllersFolder,
+}
+
+Silicon["Bridge"] = {
+	Bridge = Bridge.Bridge,
+	AddBridge = Bridge.AddBridge,
+	GetBridge = Bridge.GetBridge,
+	EventType = EventType,
+}
 
 Silicon["Implements"] = Implements
 

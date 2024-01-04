@@ -1,7 +1,7 @@
 --!strict
 
 --- @class Implements
---- A subclass contained under the main Silicon class that handles the implementation for default events.
+--- A subclass contained under the main Silicon class that handles the implementations for Singletons.
 local Implements = {}
 
 --[=[
@@ -19,7 +19,7 @@ export type Implements = "OnStart" | "OnPlayerAdded" | "OnCharacterAdded" | "Non
 
 	An implementation that fires when Silicon starts.
 ]=]
-Implements.OnStart = "_OnStart"
+Implements.OnStart = "OnStart"
 
 --[=[
 	@within Implements
@@ -28,7 +28,7 @@ Implements.OnStart = "_OnStart"
 
 	An implementation that passes in players as arguments each time the Players.PlayerAdded signal is fired.
 ]=]
-Implements.OnPlayerAdded = "_OnPlayerAdded"
+Implements.OnPlayerAdded = "OnPlayerAdded"
 
 --[=[
 	@within Implements
@@ -37,7 +37,7 @@ Implements.OnPlayerAdded = "_OnPlayerAdded"
 
 	An implementation that passes in players as arguments each time the Players.PlayerAdded signal is fired.
 ]=]
-Implements.OnCharacterAdded = "_OnCharacterAdded"
+Implements.OnCharacterAdded = "OnCharacterAdded"
 
 --[=[
 	@within Implements

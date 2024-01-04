@@ -1,4 +1,3 @@
---!strict
 local Implements = require(script.Parent.Implements)
 type Implements = Implements.Implements
 

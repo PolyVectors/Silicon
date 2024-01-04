@@ -1,7 +1,7 @@
---!strict
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
+local Promise = require(ReplicatedStorage.Packages.promise)
 local Option = require(ReplicatedStorage.Packages.option)
 local Singleton = require(script.Parent)
 
@@ -72,6 +72,30 @@ function Controller.AddController(controller: Singleton)
 	end
 
 	return Controller.Controllers[controller._name]
+end
+
+function Controller.AddControllers(controllers: { Singleton })
+	for _, controller in controllers do
+		Controller.AddService(controller)
+	end
+end
+
+function Controller.AddControllersFolder(controllersFolder: Folder)
+	for _, controllerModule: ModuleScript in controllersFolder:GetChildren() do
+		if not controllerModule:IsA("ModuleScript") then
+			return
+		end
+
+		Promise.try(function()
+			return require(controllerModule)
+		end)
+			:andThen(function(service: Singleton)
+				Controller.AddController(service)
+			end)
+			:catch(function(err)
+				warn(`Failed to load Controller contained in module "{controllerModule.Name}" due to: "{err}"`)
+			end)
+	end
 end
 
 return Controller

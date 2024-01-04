@@ -1,16 +1,13 @@
---!strict
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Promise = require(ReplicatedStorage.Packages.promise)
-local Option = require(ReplicatedStorage.Packages.option)
 
 local Singleton = require(script.Parent)
 
 local Implements = require(script.Parent.Parent.Implements)
 local ImplementsDefinitions = require(script.Parent.Parent.Implements.Definitions)
 
-type Option<T> = Option.Option<T>
 type Singleton = Singleton.Singleton
 type Implements = Implements.Implements
 
@@ -56,7 +53,7 @@ function Service.Service(name: string): (
 end
 
 function Service.AddService(service: Singleton)
-	if Option.Wrap(next(service)):IsNone() then
+	if next(service) == nil then
 		warn("[Silicon/Singleton/Service] Cannot add a malformed service, did you create the service on the client?")
 		return
 	end
