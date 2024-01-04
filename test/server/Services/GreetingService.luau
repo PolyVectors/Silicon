@@ -9,7 +9,7 @@ local GetBridge = Silicon.Bridge.GetBridge
 local GreetingService
 
 GreetingService = Service("GreetingService")({ Implements.OnPlayerAdded })({
-	[Implements.OnPlayerAdded] = function(player: Player)
+	[Implements.OnPlayerAdded] = function(_player: Player)
 		GetBridge("GreetingBridge")
 	end,
 })

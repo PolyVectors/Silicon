@@ -4,7 +4,6 @@ local Silicon = require(ReplicatedStorage.Silicon)
 
 local Controller = Silicon.Controller.Controller
 local Implements = Silicon.Implements
-local GetBridge = Silicon.Bridge.GetBridge
 
 local GreetingController
 
