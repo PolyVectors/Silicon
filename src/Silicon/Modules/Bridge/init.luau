@@ -1,12 +1,15 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local BridgeType = require(script.EventType)
-type EventType = BridgeType.EventType
+local EventType = require(script.EventType)
+type EventType = EventType.EventType
 
 local Bridge = {}
 Bridge.__index = Bridge
 
-type Bridge = {}
+type Bridge = {
+	FireEvent: (self: Bridge, name: string, eventType: EventType, args: { any }) -> nil,
+	WhenFired: (self: Bridge, name: string, eventType: EventType, fn: (...any) -> nil) -> nil,
+}
 
 Bridge.Bridges = {}
 
@@ -17,12 +20,6 @@ local function createSubFolder(name: string, parent: Instance)
 
 		new_folder.Name = name
 	end
-end
-
-local function addBridgeFolders(bridgeName: string, eventType: EventType)
-	createSubFolder("_Silicon/Bridges", ReplicatedStorage)
-	createSubFolder(bridgeName, ReplicatedStorage["_Silicon/Bridges"])
-	createSubFolder(eventType, ReplicatedStorage["_Silicon/Bridges"][bridgeName])
 end
 
 Bridge.Bridge = function(
@@ -46,8 +43,10 @@ function Bridge.AddBridge(bridge: Bridge)
 	end
 
 	for _, eventType in bridge._eventTypes do
-		if bridge._bridgeEvents[eventType] ~= nil and BridgeType[eventType] ~= nil then
-			addBridgeFolders(bridge._name, eventType)
+		if bridge._bridgeEvents[eventType] ~= nil and EventType[eventType] ~= nil then
+			createSubFolder("_Silicon/Bridges", ReplicatedStorage)
+			createSubFolder(bridge._name, ReplicatedStorage["_Silicon/Bridges"])
+			createSubFolder(eventType, ReplicatedStorage["_Silicon/Bridges"][bridge._name])
 
 			for _, eventName in bridge._bridgeEvents[eventType] do
 				local newRemote = Instance.new("RemoteEvent")
@@ -77,9 +76,25 @@ function Bridge.GetBridge(name: string): Bridge
 
 				newBridge._bridgeEvents = events
 			end
-
-			return setmetatable(newBridge, Bridge)
 		end
+
+		return setmetatable(newBridge, Bridge)
+	end
+end
+
+function Bridge:FireEvent(name: string, eventType: EventType, args: { any })
+	local remoteEvent: RemoteEvent = ReplicatedStorage["_Silicon/Bridges"][self._name][eventType][name]
+
+	if eventType == EventType.ServerToClient then
+		remoteEvent:FireAllClients(table.unpack(args))
+	end
+end
+
+function Bridge:WhenFired(name: string, eventType: EventType, fn: (...any) -> nil)
+	local remoteEvent: RemoteEvent = ReplicatedStorage["_Silicon/Bridges"][self._name][eventType][name]
+
+	if eventType == EventType.ServerToClient then
+		remoteEvent.OnClientEvent:Connect(fn)
 	end
 end
 
