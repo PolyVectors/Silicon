@@ -2,13 +2,11 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Promise = require(ReplicatedStorage.Packages.promise)
-local Option = require(ReplicatedStorage.Packages.option)
 local Singleton = require(script.Parent)
 
 local Implements = require(script.Parent.Parent.Implements)
 local ImplementsDefinitions = require(script.Parent.Parent.Implements.Definitions)
 
-type Option<T> = Option.Option<T>
 type Singleton = Singleton.Singleton
 type Implements = Implements.Implements
 
@@ -54,7 +52,7 @@ function Controller.Controller(name: string): (
 end
 
 function Controller.AddController(controller: Singleton)
-	if Option.Wrap(next(controller)):IsNone() then
+	if next(controller) == nil then
 		warn(
 			"[Silicon/Singleton/Controller] Cannot add a malformed controller, did you create the controller on the server?"
 		)
