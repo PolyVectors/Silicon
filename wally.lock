@@ -8,11 +8,6 @@ version = "4.0.0"
 dependencies = []
 
 [[package]]
-name = "grilme99/option"
-version = "1.0.5"
-dependencies = []
-
-[[package]]
-name = "poly/silicon"
-version = "0.0.1-alpha.1"
-dependencies = [["option", "grilme99/option@1.0.5"], ["promise", "evaera/promise@4.0.0"]]
+name = "polyvector/silicon"
+version = "0.1.0-alpha.6"
+dependencies = [["promise", "evaera/promise@4.0.0"]]
