@@ -96,38 +96,32 @@ Under the hood, bridges are turned into sets of RemoteFunctions neatly organised
 Here is an example of a simple bridge that allows for communication between a greeting service and a greeting controller:
 
 ```lua
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local GreetingBridge = require(ReplicatedStorage.Shared.GreetingBridge
-
-local GreetingController
-
-GreetingController = Controller "GreetingController" { Implements.OnStart } {
-    GreetPlayer = function(username: string)
-        print(`Hello, {username}!`)
-    end,
-}
-```
-> src/client/GreetingController
-
-```lua
-local GreetingController = require(ReplicatedStorage.Client.GreetingController)
-
-return Bridge "GreetingBridge" { BridgeType.ServerToClient } {
-    [BridgeType.ServerToClient] = GreetingController.GreetPlayer
+return Bridge"GreetingBridge" { EventType.ServerToClient } {
+	[EventType.ServerToClient] = { "GreetPlayer" },
 }
 ```
 > src/shared/GreetingBridge
 
 ```lua
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local GreetingBridge = require(ReplicatedStorage.Shared.GreetingBridge)
+return Controller "GreetingController" { Implements.OnStart } {
+	[Implements.OnStart] = function()
+		GetBridge "GreetingBridge" : FireEvent (EventType.ClientToServer, "GreetPlayer") { Players.LocalPlayer.Name }
+	end,
+}
+```
+> src/client/GreetingController
 
+```lua
 local GreetingService
 
-GreetingService = Service "GreetingService" { Implements.OnPlayerAdded } {
-    [Implements.OnPlayerAdded] = function(player: Player)
-        GreetingBridge:Fire(player.Name)
-    end
+GreetingService = Service "GreetingService" { Implements.OnStart } {
+	GreetPlayer = function(name: string)
+		print(`Hello, {name}!`)
+	end,
+
+	[Implements.OnStart] = function()
+		GetBridge "GreetingBridge" : WhenFired (EventType.ClientToServer, "GreetPlayer") (GreetingService.GreetPlayer)
+	end,
 }
 ```
 > src/server/GreetingService

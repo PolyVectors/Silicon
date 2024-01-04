@@ -1,24 +1,16 @@
+local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Silicon = require(ReplicatedStorage.Silicon)
 
 local Controller = Silicon.Controller.Controller
 local Implements = Silicon.Implements
+
 local EventType = Silicon.Bridge.EventType
 local GetBridge = Silicon.Bridge.GetBridge
 
-local GreetingController
-
-GreetingController = Controller("GreetingController")({ Implements.OnStart })({
-	GreetPlayer = function(username: string)
-		print(`Hello, {username}!`)
-	end,
-
+return Controller("GreetingController")({ Implements.OnStart })({
 	[Implements.OnStart] = function()
-		GetBridge("GreetingBridge"):WhenFired("GreetPlayer", EventType.ServerToClient, function(testString: string)
-			GreetingController.GreetPlayer(testString)
-		end)
+		GetBridge("GreetingBridge"):FireEvent(EventType.ClientToServer, "GreetPlayer")({ Players.LocalPlayer.Name })
 	end,
 })
-
-return GreetingController

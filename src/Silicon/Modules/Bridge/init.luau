@@ -7,8 +7,8 @@ local Bridge = {}
 Bridge.__index = Bridge
 
 type Bridge = {
-	FireEvent: (self: Bridge, name: string, eventType: EventType, args: { any }) -> nil,
-	WhenFired: (self: Bridge, name: string, eventType: EventType, fn: (...any) -> nil) -> nil,
+	FireEvent: (self: Bridge, eventType: EventType, name: string) -> (args: { [number]: any }) -> nil,
+	WhenFired: (self: Bridge, eventType: EventType, name: string) -> (fn: (...any) -> nil) -> nil,
 }
 
 Bridge.Bridges = {}
@@ -17,7 +17,6 @@ local function createSubFolder(name: string, parent: Instance)
 	if parent:FindFirstChild(name) == nil then
 		local new_folder = Instance.new("Folder")
 		new_folder.Parent = parent
-
 		new_folder.Name = name
 	end
 end
@@ -82,19 +81,27 @@ function Bridge.GetBridge(name: string): Bridge
 	end
 end
 
-function Bridge:FireEvent(name: string, eventType: EventType, args: { any })
-	local remoteEvent: RemoteEvent = ReplicatedStorage["_Silicon/Bridges"][self._name][eventType][name]
+function Bridge.FireEvent(self: Bridge, eventType: EventType, name: string): (args: { [number]: any }) -> nil
+	return function(args: { [number]: any })
+		local remoteEvent: RemoteEvent = ReplicatedStorage["_Silicon/Bridges"][self._name][eventType][name]
 
-	if eventType == EventType.ServerToClient then
-		remoteEvent:FireAllClients(table.unpack(args))
+		if eventType == EventType.ServerToClient then
+			remoteEvent:FireAllClients(table.unpack(args))
+		elseif eventType == EventType.ClientToServer then
+			remoteEvent:FireServer(table.unpack(args))
+		end
 	end
 end
 
-function Bridge:WhenFired(name: string, eventType: EventType, fn: (...any) -> nil)
-	local remoteEvent: RemoteEvent = ReplicatedStorage["_Silicon/Bridges"][self._name][eventType][name]
+function Bridge.WhenFired(self: Bridge, eventType: EventType, name: string): (fn: (...any) -> nil) -> nil
+	return function(fn: (...any) -> nil)
+		local remoteEvent: RemoteEvent = ReplicatedStorage["_Silicon/Bridges"][self._name][eventType][name]
 
-	if eventType == EventType.ServerToClient then
-		remoteEvent.OnClientEvent:Connect(fn)
+		if eventType == EventType.ServerToClient then
+			remoteEvent.OnClientEvent:Connect(fn)
+		elseif eventType == EventType.ClientToServer then
+			remoteEvent.OnServerEvent:Connect(fn)
+		end
 	end
 end
 
