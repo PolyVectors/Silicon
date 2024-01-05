@@ -13,3 +13,4 @@ include = ["src", "src/*", "default.project.json", "wally.lock", "wally.toml"]
 
 [dependencies]
 promise = "evaera/promise@4.0.0"
+silicon = "polyvectors/silicon@0.1.0-alpha.12"

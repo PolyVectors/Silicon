@@ -1,6 +1,6 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local Silicon = require(ReplicatedStorage.Silicon)
+local Silicon = require(ReplicatedStorage.silicon)
 
 local Service = Silicon.Service.Service
 local AddService = Silicon.Service.AddService

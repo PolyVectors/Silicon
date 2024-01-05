@@ -9,5 +9,5 @@ dependencies = []
 
 [[package]]
 name = "polyvectors/silicon"
-version = "0.1.0-alpha.6"
-dependencies = [["promise", "evaera/promise@4.0.0"]]
+version = "0.1.0-alpha.12"
+dependencies = [["promise", "evaera/promise@4.0.0"], ["silicon", "polyvectors/silicon@0.1.0-alpha.12"]]
