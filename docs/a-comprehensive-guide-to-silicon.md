@@ -2,8 +2,8 @@
 sidebar_position: 2
 ---
 
-# The Basics
-The Basics is a longer tutorial relative to other Silicon tutorials (such as Silicon By Example), however it goes more in depth about the design of Silicon.
+# A Comprehensive Guide To Silicon
+A Comprehensive Guide is a long tutorial relative to other Silicon tutorials (such as Silicon By Example), however it goes more in depth about the design of Silicon.
 
 ## Singletons
 A `Singleton` is an idea taken from Knit.
