@@ -18,6 +18,8 @@ A [Fusion](https://github.com/dphfox/Fusion), [Flamework](https://github.com/rbx
    1. If Wally doesn't work for you or your workflow you can still use Silicon
    2. Go to the [releases section](https://github.com/PolyVectors/Silicon/releases) of the repository.
    3. Download the `Silicon.rbxm` file and insert it under `ReplicatedStorage`.
+> [!WARNING]
+> If you are using an alpha release of Silicon in your game, make sure you are willing to handle the currently unstable state of Silicon and frequent API changes.
 
 ## Documentation
 Documentation, guides and the API Reference will be hosted under [silicon.polyvector.xyz](https://silicon.polyvector.xyz) when the documentation is written to a cohesive and easily readable standard and a release is available under the releases section.
