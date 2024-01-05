@@ -4,7 +4,10 @@
 </div>
 <br>
 
+<div align="center">
+
 A [Fusion](https://github.com/dphfox/Fusion), [Flamework](https://github.com/rbxts-flamework/core) and [Knit](https://github.com/Sleitnick/Knit) inspired modern game framework created for use in Roblox.
+</div>
 
 ## Installation
 1. Wally/Rojo Install (Recommended)
