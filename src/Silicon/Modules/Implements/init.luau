@@ -1,14 +1,16 @@
 --!strict
 
---- @class Implements
---- A subclass contained under the main Silicon class that handles the implementations for Singletons.
+--[=[
+	@class Implements
+	A subclass contained under the main Silicon class that handles the implementations for Singletons.
+]=]
 local Implements = {}
 
 --[=[
 	@within Implements
 	@type Implements "OnStart" | "OnPlayerAdded" | "OnCharacterAdded" | "None"
 
-	This type dictates all of the default events that can be implemented into a Service or Controller.
+	This type dictates all of the default implementations that can be implemented into a Service/Controller.
 ]=]
 export type Implements = "OnStart" | "OnPlayerAdded" | "OnCharacterAdded" | "None"
 

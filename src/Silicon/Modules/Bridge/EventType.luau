@@ -1,12 +1,14 @@
---- @class EventType
---- A subclass contained under the main Bridge class that handles the implementation for default events.
+--[=[
+	@class EventType
+	A subclass contained under the main Bridge class that handles the implementation for default events.
+]=]
 local EventType = {}
 
 --[=[
-	@within Implements
-	@type Implements "OnStart" | "OnPlayerAdded" | "OnCharacterAdded" | "None"
+	@within EventType
+	@type EventType "OnStart" | "OnPlayerAdded" | "OnCharacterAdded" | "None"
 
-	This type dictates all of the default events that can be implemented into a Service or Controller.
+	This type dictates all of the default events that can be implemented into a Bridge.
 ]=]
 export type EventType = "ServerToClient" | "ClientToServer"
 

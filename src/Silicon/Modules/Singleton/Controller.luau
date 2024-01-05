@@ -16,6 +16,14 @@ type Implements = Implements.Implements
     A class derived from singletons meant for use on the Client.
 ]=]
 local Controller = {}
+
+--[=[
+	@client
+	@prop Controllers { [string]: Singleton }
+	@within Controller
+
+	Contains all Controllers added by Controller.AddController (or any of its variations).
+]=]
 Controller.Controllers = {} :: { Singleton }
 
 --[=[
@@ -39,6 +47,12 @@ Controller.Controllers = {} :: { Singleton }
 function Controller.Controller(name: string): (
 	implements: { string | Implements }
 ) -> (props: { [string | Implements]: (...any) -> any }) -> Singleton
+	if RunService:IsServer() then
+		warn(
+			"[Silicon/Singleton/Service] Cannot create a controller on the server, this method will return a malformed controller."
+		)
+	end
+
 	return function(implements: { string | Implements })
 		return function(props: { [string]: (...any) -> nil })
 			if RunService:IsClient() then
@@ -50,6 +64,16 @@ function Controller.Controller(name: string): (
 	end
 end
 
+--[=[
+	@client
+	@function AddController
+	@within Controller
+
+	@param controller Singleton
+	@return nil
+
+	Adds a controller to the Controller.Controllers table while running recognised implementation methods under the Controller.
+]=]
 function Controller.AddController(controller: Singleton)
 	if next(controller) == nil then
 		warn(
@@ -77,10 +101,21 @@ function Controller.AddControllers(controllers: { Singleton })
 	end
 end
 
-function Controller.AddControllersFolder(controllersFolder: Folder)
-	for _, controllerModule: ModuleScript in controllersFolder:GetChildren() do
+--[=[
+	@client
+	@function AddControllerContainer
+	@within Controller
+
+	@param controllerContainer Instance
+	@return nil
+
+	Iterates through children of a given instance, accesses any module scripts found, and calls Controller.AddController if the module script returns a Singleton.
+]=]
+function Controller.AddControllerContainer(controllerContainer: Instance)
+	for _, controllerModule: ModuleScript in controllerContainer:GetChildren() do
 		if not controllerModule:IsA("ModuleScript") then
-			return
+			print(`Skipped loading instance "{controllerModule.Name}" as it is not a ModuleScript`)
+			continue
 		end
 
 		Promise.try(function()

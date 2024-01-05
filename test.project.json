@@ -3,24 +3,22 @@
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {
+      "Silicon": {
+        "$path": "src/Silicon"
+      },
       "Packages": {
         "$path": "Packages"
       },
+      "promise": {
+        "$path": "Packages/_Index/evaera_promise@4.0.0/promise/lib" 
+      },
       "Shared": {
         "$path": "test/shared"
-      },
-      "Silicon": {
-        "$path": "src/Silicon"
       }
     },
     "ServerScriptService": {
       "Server": {
         "$path": "test/server"
-      }
-    },
-    "SoundService": {
-      "$properties": {
-        "RespectFilteringEnabled": true
       }
     },
     "StarterPlayer": {

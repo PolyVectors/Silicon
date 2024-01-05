@@ -4,6 +4,10 @@ local Promise = require(script.Parent.Parent.Parent.promise)
 local EventType = require(script.EventType)
 type EventType = EventType.EventType
 
+--[=[
+	@class Bridge
+	A class that handles networking under a unique "bridge" model.
+]=]
 local Bridge = {}
 Bridge.__index = Bridge
 
