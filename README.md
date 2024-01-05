@@ -33,6 +33,9 @@ You can also build the documentation by cloning the repository and running `moon
 
 <div align="center">
     <img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/example.png?raw=true" width="512"/>
+</div>
+<br>
 
+<div align="center">
 This code creates a simple service that greets the player upon joining (through server-side output).
 </div>
