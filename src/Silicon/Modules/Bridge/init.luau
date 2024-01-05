@@ -1,5 +1,7 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+local Promise = require(ReplicatedStorage.Packages.promise)
+
 local EventType = require(script.EventType)
 type EventType = EventType.EventType
 
@@ -36,7 +38,7 @@ Bridge.Bridge = function(
 end
 
 function Bridge.AddBridge(bridge: Bridge)
-	if next(bridge) == nil then
+	if next(bridge) == nil or bridge._name == nil or bridge._eventTypes == nil or bridge._bridgeEvents == nil then
 		warn("[Silicon/Bridge] Cannot add malformed bridge.")
 		return
 	end
@@ -53,6 +55,31 @@ function Bridge.AddBridge(bridge: Bridge)
 				newRemote.Parent = ReplicatedStorage["_Silicon/Bridges"][bridge._name][eventType]
 			end
 		end
+	end
+end
+
+function Bridge.AddBridgeContainer(bridgeContainer: Instance)
+	for _, bridgeModule: ModuleScript in bridgeContainer do
+		if not bridgeModule:IsA("ModuleScript") then
+			print(`Skipped loading instance "{bridgeModule.Name}" as it is not a ModuleScript`)
+			continue
+		end
+
+		Promise.try(function()
+			return require(bridgeModule)
+		end)
+			:andThen(function(bridge: Bridge)
+				Bridge.AddBridge(bridge)
+			end)
+			:catch(function(err)
+				warn(`Failed to load Service contained in module "{bridgeModule.Name}" due to: "{err}"`)
+			end)
+	end
+end
+
+function Bridge.AddBridges(bridges: { Bridge })
+	for _, bridge in bridges do
+		Bridge.AddBridge(bridge)
 	end
 end
 

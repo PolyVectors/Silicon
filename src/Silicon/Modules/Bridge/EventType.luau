@@ -28,11 +28,4 @@ EventType.ServerToClient = "ServerToClient"
 ]=]
 EventType.ClientToServer = "ClientToServer"
 
-function EventType.GetEvents()
-	return {
-		ServerToClient = EventType.ServerToClient,
-		ClientToServer = EventType.ClientToServer,
-	}
-end
-
 return EventType

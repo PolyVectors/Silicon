@@ -3,125 +3,48 @@ sidebar_position: 2
 ---
 
 # The Basics
-To get started with Silicon, it is important to understand the basics of the Singleton model.
-A singleton at its core is a class that is used to create Services and Controllers.
-Singletons are derived by Services and Controllers, this is to create seperation between the Server and Client.
-Services being used on the server and Controllers being used on the client.
+The Basics is a longer tutorial relative to other Silicon tutorials (such as Silicon By Example), however it goes more in depth about the design of Silicon.
+
+## Singletons
+A `Singleton` is an idea taken from Knit.
+Singletons are used in Silicon as a template for creating `Services` and `Controllers` (ideas inspired from Flamework and Knit).
 
 ## Services
-To create a service, use the `Service` method under `Silicon`.
+A Service is a class derived from a Singleton that is exclusive to the server.
+Creating a Service in Silicon requires minimal syntax and Services can be used powerfully to define behaviour on the server.
+Here is an example of a simple service that will be brought up repeatedly and expanded on in the tutorial:
 
 ```lua
-local Silicon = require(Path.To.Silicon)
-local Service = Silicon.Service
+local Silicon = require(ReplicatedStorage.Silicon) -- Replace Path.To.Silicon with the actual Silicon path (preferably absolute).
 
-Service "MyService" {} {}
+local Service = Silicon.Service.Service -- The first occurance of "Service" is a table that holds public methods in the Service class, the second occurance of "Service" is the method that creates a new Service.
+local AddService = Silicon.Service.AddService -- "AddService" is a method that tells Silicon to add a service and execute its Implementations.
+
+local Implements = Silicon.Implements -- The "Implements" class tells Silicon to hook to certain methods in a Singleton to run them under certain conditions, essentialy "implementing" certain methods.
+
+-- Here, the Implement "OnPlayerAdded" is used which calls the "OnPlayerAdded" method of the Service when a new player joins the experience.
+local GreetService = Service "GreetService" { Implements.OnPlayerAdded } {
+	[Implements.OnPlayerAdded] = function(player: Player)
+		print(`Hello, {player.Name}!`)
+	end,
+}
+
+-- Here is where implementations will be evaluated and executed by Silicon.
+AddService(GreetService)
+
+-- Start Silicon and consequently run the (unused) OnStart implementation.
+Silicon.Start()
 ```
-> This is the minimum amount of required code to create a service using Silicon.
+> This is an example of a "standalone" service which does not require the use of any other services or `Bridges`.
+> Standalone services still need to be added using any `AddService` method.
 
-From here on imports will be hidden for clarity.
+Services, however do not to be this complex and a simple service can be created with a minimal amount of syntax.
 
-Although this code works and can be read by the Luau interpreter, some may prefer to use the following syntax instead as it uses syntax accepted by formatters such as StyLua by default:
 ```lua
 -- //snip//
-Service("MyService")({})({})
+Service "MyService" {} {}
 ```
+> This is a service that essentially does nothing, however it does showcase the minimal syntax of Silicon.
 
 ## Controllers
-Creating a controller in Silicon it is essentially the same, except the `Service` method is swapped out for the `Controller` method.
-
-```lua
-Controller "MyController" {} {}
-```
-
-It can also be written like this:
-```lua
-Controller("MyController")({})({})
-```
-
-## Props
-In Silicon, a Prop is either a property or a method underneath a Singleton.
-Props can come in very useful when creating a Singleton.
-This is because these values stay the same across all methods and can all read eachother.
-The following is an example of prop usage:
-
-```lua
-local CounterService
-
-CounterService = Service "CounterService" { Implements.OnPlayerAdded } {
-    PlayerCount = 0,
-
-    [Implements.OnPlayerAdded] = function()
-        CounterService.PlayerCount += 1
-    end
-}
-```
-
-You can also create methods by directly adding them into the list of props when you initalise your service.
-The following is example usage of methods.
-
-```lua
-local MethodTestingService
-
-MethodTestingService = Service "MethodTestingService" { Implements.OnStart } {
-    MyMethod = function(value: string)
-	    print(`Here is your value: "{value}"`)
-    end
-
-	[Implements.OnStart] = function()
-		MethodTestingService.MyMethod()
-	end,
-}
-```
-or, alternatively:
-
-```lua
-local MethodTestingService
-
-MethodTestingService = Service "MethodTestingService" { Implements.OnStart } {
-	[Implements.OnStart] = function()
-		MethodTestingService.MyMethod()
-	end,
-}
-
-function MethodTestingService.MyMethod()
-    print("Hello, world")
-end
-```
-
-## Bridges
-
-Silicon works off of a "bridge" model, where data between services and controllers are defined and generated before usage.
-Under the hood, bridges are turned into sets of RemoteFunctions neatly organised under ReplicatedStorage.
-Here is an example of a simple bridge that allows for communication between a greeting service and a greeting controller:
-
-```lua
-return Bridge"GreetingBridge" { EventType.ServerToClient } {
-	[EventType.ServerToClient] = { "GreetPlayer" },
-}
-```
-> src/shared/GreetingBridge
-
-```lua
-return Controller "GreetingController" { Implements.OnStart } {
-	[Implements.OnStart] = function()
-		GetBridge "GreetingBridge" : FireEvent (EventType.ClientToServer, "GreetPlayer") { Players.LocalPlayer.Name }
-	end,
-}
-```
-> src/client/GreetingController
-
-```lua
-local GreetingService
-
-GreetingService = Service "GreetingService" { Implements.OnStart } {
-	GreetPlayer = function(name: string)
-		print(`Hello, {name}!`)
-	end,
-
-	[Implements.OnStart] = function()
-		GetBridge "GreetingBridge" : WhenFired (EventType.ClientToServer, "GreetPlayer") (GreetingService.GreetPlayer)
-	end,
-}
-```
-> src/server/GreetingService
+A 

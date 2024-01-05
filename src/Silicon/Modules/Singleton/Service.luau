@@ -69,16 +69,11 @@ function Service.AddService(service: Singleton)
 	end
 end
 
-function Service.AddServices(services: { Singleton })
-	for _, service in services do
-		Service.AddService(service)
-	end
-end
-
-function Service.AddServicesFolder(servicesFolder: Folder)
-	for _, serviceModule: ModuleScript in servicesFolder:GetChildren() do
+function Service.AddServiceContainer(servicesContainer: Instance)
+	for _, serviceModule: ModuleScript in servicesContainer:GetChildren() do
 		if not serviceModule:IsA("ModuleScript") then
-			return
+			print(`Skipped loading instance "{serviceModule.Name}" as it is not a ModuleScript`)
+			continue
 		end
 
 		Promise.try(function()
@@ -90,6 +85,12 @@ function Service.AddServicesFolder(servicesFolder: Folder)
 			:catch(function(err)
 				warn(`Failed to load Service contained in module "{serviceModule.Name}" due to: "{err}"`)
 			end)
+	end
+end
+
+function Service.AddServices(services: { Singleton })
+	for _, service in services do
+		Service.AddService(service)
 	end
 end
 

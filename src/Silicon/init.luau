@@ -41,8 +41,7 @@ Silicon["Service"] = {
 	Service = Service.Service,
 	AddService = Service.AddService,
 	AddServices = Service.AddServices,
-	AddServicesFolder = Service.AddServicesFolder,
-	GetServiceEvents = Service.GetServiceEvents,
+	AddServiceContainer = Service.AddServiceContainer,
 }
 
 --[=[

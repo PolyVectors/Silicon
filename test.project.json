@@ -8,6 +8,9 @@
       },
       "Shared": {
         "$path": "test/shared"
+      },
+      "Silicon": {
+        "$path": "src/Silicon"
       }
     },
     "ServerScriptService": {
