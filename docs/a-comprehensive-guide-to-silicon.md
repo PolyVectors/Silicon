@@ -15,7 +15,7 @@ Creating a Service in Silicon requires minimal syntax and Services can be used p
 Here is an example of a simple service that will be brought up repeatedly and expanded on in the tutorial:
 
 ```lua
-local Silicon = require(ReplicatedStorage.Silicon) -- Replace Path.To.Silicon with the actual Silicon path (preferably absolute).
+local Silicon = require(Path.To.Silicon) -- Replace Path.To.Silicon with the actual Silicon path (preferably absolute).
 
 local Service = Silicon.Service.Service -- The first occurance of "Service" is a table that holds public methods in the Service class, the second occurance of "Service" is the method that creates a new Service.
 local AddService = Silicon.Service.AddService -- "AddService" is a method that tells Silicon to add a service and execute its Implementations.
