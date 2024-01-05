@@ -1,0 +1,32 @@
+{
+  "name": "silicon",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Packages": {
+        "$path": "Packages"
+      },
+      "Shared": {
+        "$path": "test/shared"
+      }
+    },
+    "ServerScriptService": {
+      "Server": {
+        "$path": "test/server"
+      }
+    },
+    "SoundService": {
+      "$properties": {
+        "RespectFilteringEnabled": true
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "test/client"
+        }
+      }
+    }
+  },
+  "emitLegacyScripts": true
+}
