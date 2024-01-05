@@ -1,8 +1,6 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
-local Promise = require(ReplicatedStorage.Packages.promise)
-
+local Promise = require(script.Parent.Parent.Parent.Parent.promise)
 local Singleton = require(script.Parent)
 
 local Implements = require(script.Parent.Parent.Implements)

@@ -1,6 +1,5 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local Promise = require(ReplicatedStorage.Packages.promise)
+local Promise = require(script.Parent.Parent.Parent.promise)
 
 local EventType = require(script.EventType)
 type EventType = EventType.EventType
