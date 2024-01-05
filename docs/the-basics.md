@@ -36,7 +36,7 @@ AddService(GreetService)
 Silicon.Start()
 ```
 > This is an example of a "standalone" service which does not require the use of any other services or `Bridges`.
-> Standalone services still need to be added using any `AddService` method.
+> Standalone services still need to be added using any variation of the `AddService` method.
 
 Services, however do not to be this complex and a simple service can be created with a minimal amount of syntax.
 
