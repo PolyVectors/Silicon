@@ -1,7 +1,7 @@
 {
   "name": "silicon",
   "tree": {
-    "$path": "src"
+    "$path": "src/silicon"
   },
   "emitLegacyScripts": true
 }
