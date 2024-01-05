@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[166],{63891:s=>{s.exports=JSON.parse('{"sourceUrl":"https://github.com/PolyVectors/Silicon/blob/master","baseUrl":"/","classOrder":[],"apiCategories":[]}')}}]);
