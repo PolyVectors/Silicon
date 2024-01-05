@@ -47,4 +47,3 @@ Service "MyService" {} {}
 > This is a service that essentially does nothing, however it does showcase the minimal syntax of Silicon.
 
 ## Controllers
-A 
