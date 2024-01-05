@@ -18,7 +18,7 @@ Documentation, guides and the API Reference will be hosted under [silicon.polyve
 <!--moonwave-hide-before-this-line-->
 
 <div align="center">
-    <img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/example.svg?raw=true" width="512"/>
+    <img align="center" src="https://github.com/PolyVectors/Silicon/blob/main/assets/example.png?raw=true" width="512"/>
 
 This code creates a simple service that greets the player upon joining (through server-side output).
 </div>
