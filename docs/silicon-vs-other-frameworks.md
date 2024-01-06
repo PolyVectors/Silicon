@@ -38,7 +38,7 @@ This example shows the clever usage of [Promises](https://github.com/evaera/robl
 Silicon takes this idea, an example of inspiration taken from Knit.
 
 ```lua
-local Silicon = require(game:GetService("ReplicatedStorage").Packages.Silicon)
+local Silicon = require(game:GetService("ReplicatedStorage").Packages.silicon)
 
 local Service = Silicon.Service.Service
 local Implements = Silicon.Implements

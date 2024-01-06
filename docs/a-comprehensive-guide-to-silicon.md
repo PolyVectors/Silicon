@@ -35,15 +35,43 @@ AddService(GreetService)
 -- Start Silicon and consequently run the (unused) OnStart implementation.
 Silicon.Start()
 ```
-> This is an example of a "standalone" service which does not require the use of any other services or `Bridges`.
-> Standalone services still need to be added using any variation of the `AddService` method.
+> This is an example of a "standalone" Service which does not require the use of any other Services or `Bridges`.
+> Standalone Services still need to be added using any variation of the `AddService` method.
 
-Services, however do not to be this complex and a simple service can be created with a minimal amount of syntax.
+Services however, do not to be this complex and a simple Service can be created with a minimal amount of syntax.
 
 ```lua
 -- //snip//
 Service "MyService" {} {}
 ```
-> This is a service that essentially does nothing, however it does showcase the minimal syntax of Silicon.
+> This is a Service that essentially does nothing, however it does showcase the minimal syntax of Silicon.
 
 ## Controllers
+Controllers run parallel to Services in the way that they mimic each others methods.
+The difference between controllers and Services however, is that Controllers run on the client.
+Controllers are also derived from Singletons.
+Here is an example of a simple controller that will also be brought up repeatedly and expanded upon in the tutorial:
+
+```lua
+local Players = game:GetService("Players")
+local Silicon = require(Path.To.Silicon) -- Replace Path.To.Silicon with the actual Silicon path (preferably absolute).
+
+local Controller = Silicon.Controller.Controller -- Similar to Services, Controllers are contained in the Controller table under Silicon.
+local AddController = Silicon.Controller.AddController -- A method in the Controller table equivalent to AddService on the server.
+
+local Implements = Silicon.Implements
+
+-- Here, the Implement "OnStart" is used which calls the "OnStart" method of the Controller when Silicon starts on the client.
+local GreetController = Controller("GreetController")({ Implements.OnStart })({
+	[Implements.OnStart] = function()
+		print(`Hello, {Players.LocalPlayer.Name}!`)
+	end,
+})
+
+AddController(GreetController)
+
+Silicon.Start()
+```
+
+## Bridges
+Bridges are a concept unique to Silicon which essentially handle communication between Services and Controllers.

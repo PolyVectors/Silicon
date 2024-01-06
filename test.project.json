@@ -2,9 +2,10 @@
   "name": "silicon",
   "tree": {
     "$className": "DataModel",
+    
     "ReplicatedStorage": {
       "silicon": {
-        "$path": "src/Silicon"
+        "$path": "src/silicon"
       },
       "Packages": {
         "$path": "Packages"

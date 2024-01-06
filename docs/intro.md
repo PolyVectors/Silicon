@@ -15,3 +15,10 @@ This tutorial will help you to understand how to use Silicon as quickly as possi
    1. If Wally doesn't work for you or your workflow you can still use Silicon
    2. Go to the [releases section](https://github.com/PolyVectors/Silicon/releases) of the repository.
    3. Download the latest release `Silicon.rbxm` file and insert it under `ReplicatedStorage`.
+
+## Project Setup
+
+### Non-studio Project
+#### Requirements
+1. Rojo
+2. Wally
