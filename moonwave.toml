@@ -1,5 +1,6 @@
 title = "Silicon"
 gitRepoUrl = "https://github.com/PolyVectors/Silicon"
+gitSourceBranch = "main"
 
 [home]
 enabled = true
@@ -27,7 +28,8 @@ alt = "Silicon"
 [docusaurus]
 favicon = "/favicon.png"
 tagline = "A Fusion, Flamework and Knit inspired modern game framework created for use in Roblox"
+baseUrl = "/"
 
 [footer]
 style = "dark"
-copyright = "Copyright © 2023 PolyVector. Built with Moonwave and Docusaurus"
+copyright = "Copyright © 2024 PolyVector. Built with Moonwave and Docusaurus"
