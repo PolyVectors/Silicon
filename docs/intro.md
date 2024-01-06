@@ -17,8 +17,13 @@ This tutorial will help you to understand how to use Silicon as quickly as possi
    3. Download the latest release `Silicon.rbxm` file and insert it under `ReplicatedStorage`.
 
 ## Project Setup
+This setup assumes you are using [Rojo](https://rojo.space), [Wally](https://wally.run) and [Aftman](https://github.com/LPGhatguy/aftman) to manage your game.
+Follow these steps to be able to use Silicon in your game:
 
-### Non-studio Project
-#### Requirements
-1. Rojo
-2. Wally
+1. Create a new folder.
+2. `cd` into your folder and run the following commands:
+   1. `aftman init`
+   2. `rojo init`
+   3. `rojo build -o build.rbxl`
+3. Create the following folders:
+   1. 
