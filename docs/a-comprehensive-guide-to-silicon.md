@@ -17,10 +17,10 @@ Here is an example of a simple service that will be brought up repeatedly and ex
 ```lua
 local Silicon = require(Path.To.Silicon) -- Replace Path.To.Silicon with the actual Silicon path (preferably absolute).
 
-local Service = Silicon.Service.Service -- The first occurance of "Service" is a table that holds public methods in the Service class, the second occurance of "Service" is the method that creates a new Service.
+local Service = Silicon.Service.Service -- The first occurrence of "Service" is a table that holds public methods in the Service class, the second occurrence of "Service" is the method that creates a new Service.
 local AddService = Silicon.Service.AddService -- "AddService" is a method that tells Silicon to add a service and execute its Implementations.
 
-local Implements = Silicon.Implements -- The "Implements" class tells Silicon to hook to certain methods in a Singleton to run them under certain conditions, essentialy "implementing" certain methods.
+local Implements = Silicon.Implements -- The "Implements" class tells Silicon to hook to certain methods in a Singleton to run them under certain conditions, essentially "implementing" certain methods.
 
 -- Here, the Implement "OnPlayerAdded" is used which calls the "OnPlayerAdded" method of the Service when a new player joins the experience.
 local GreetService = Service "GreetService" { Implements.OnPlayerAdded } {
@@ -76,7 +76,3 @@ Silicon.Start()
 ## Bridges
 Bridges are a concept unique to Silicon which essentially handle networking between Services and Controllers.
 Here is example of basic usage of bridges to handle client to server communication:
-
-```
-local Silicon 
-```
