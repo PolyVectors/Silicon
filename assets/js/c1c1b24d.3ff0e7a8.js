@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[250],{94089:e=>{e.exports=JSON.parse('{"functions":[],"properties":[],"types":[],"name":"Bridge","desc":"A class that handles networking under a unique \\"bridge\\" model.","source":{"line":11,"path":"src/silicon/Modules/Bridge/init.luau"}}')}}]);
