@@ -17,8 +17,8 @@ Here is an example of a simple service that will be brought up repeatedly and ex
 ```lua
 local Silicon = require(Path.To.Silicon) -- Replace Path.To.Silicon with the actual Silicon path (preferably absolute).
 
-local Service = Silicon.Service.Service -- The first occurrence of "Service" is a table that holds public methods in the Service class, the second occurrence of "Service" is the method that creates a new Service.
-local AddService = Silicon.Service.AddService -- "AddService" is a method that tells Silicon to add a service and execute its Implementations.
+local Service = Silicon.ServiceContainer.Service -- The first occurrence of "Service" is a table that holds public methods in the Service class, the second occurrence of "Service" is the method that creates a new Service.
+local AddService = Silicon.ServiceContainer.AddService -- "AddService" is a method that tells Silicon to add a service and execute its Implementations.
 
 local Implements = Silicon.Implements -- The "Implements" class tells Silicon to hook to certain methods in a Singleton to run them under certain conditions, essentially "implementing" certain methods.
 
@@ -47,7 +47,7 @@ Service "MyService" {} {}
 > This is a Service that essentially does nothing, however it does showcase the minimal syntax of Silicon.
 
 ## Controllers
-Controllers run parallel to Services in the way that they mimic each others methods.
+Controllers run parallel to Services in the way that they are both derived from Singletons.
 The difference between controllers and Services however, is that Controllers run on the client.
 Controllers are also derived from Singletons.
 Here is an example of a simple controller that will also be brought up repeatedly and expanded upon in the tutorial:
@@ -56,8 +56,8 @@ Here is an example of a simple controller that will also be brought up repeatedl
 local Players = game:GetService("Players")
 local Silicon = require(Path.To.Silicon) -- Replace Path.To.Silicon with the actual Silicon path (preferably absolute).
 
-local Controller = Silicon.Controller.Controller -- Similar to Services, Controllers are contained in the Controller table under Silicon.
-local AddController = Silicon.Controller.AddController -- A method in the Controller table equivalent to AddService on the server.
+local Controller = Silicon.ControllerContainer.Controller -- Similar to Services, Controllers are contained in the Controller table under Silicon.
+local AddController = Silicon.ControllerContainer.AddController -- A method in the Controller table equivalent to AddService on the server.
 
 local Implements = Silicon.Implements
 

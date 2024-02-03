@@ -6,7 +6,7 @@
 <br>
 
 <div align="center"/>
-   <img alt="Static Badge" src="https://img.shields.io/badge/version-0.1.0_alpha.12-black">
+   <img alt="Static Badge" src="https://img.shields.io/badge/version-0.1.0_beta.1-black">
    <img alt="Static Badge" src="https://img.shields.io/badge/license-MIT-black?logo=">
    
    A [Fusion](https://github.com/dphfox/Fusion), [Flamework](https://github.com/rbxts-flamework/core) and [Knit](https://github.com/Sleitnick/Knit) inspired modern game framework created for use in Roblox.
