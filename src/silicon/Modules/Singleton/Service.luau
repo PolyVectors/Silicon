@@ -6,7 +6,6 @@ local Singleton = require(script.Parent)
 local Implements = require(script.Parent.Parent.Implements)
 local ImplementsDefinitions = require(script.Parent.Parent.Implements.Definitions)
 
-type Singleton = Singleton.Singleton
 type Implements = Implements.Implements
 
 --[=[
@@ -24,7 +23,7 @@ local Service = {}
 
 	Contains all Services added by Service.AddService (or any of its variations).
 ]=]
-Service.Services = {} :: { [string]: Singleton }
+Service.Services = {}
 
 --[=[
 	@server
@@ -46,7 +45,7 @@ Service.Services = {} :: { [string]: Singleton }
 ]=]
 function Service.Service(name: string): (
 	implements: { string | Implements }
-) -> (props: { [string | Implements]: (...any) -> any | any }) -> Singleton
+) -> (props: { [string | Implements]: (...any) -> any | any }) -> unknown
 	if RunService:IsClient() then
 		warn(
 			"[Silicon/Singleton/Service] Cannot create a service on the client, this method will return a malformed service."
@@ -74,8 +73,8 @@ end
 
 	Adds a service to the Service.Services table while running recognised implementation methods under the Service.
 ]=]
-function Service.AddService(service: Singleton)
-	if next(service) == nil then
+function Service.AddService(service)
+	if service == {} then
 		warn("[Silicon/Singleton/Service] Cannot add a malformed service, did you create the service on the client?")
 		return
 	end
@@ -101,7 +100,7 @@ end
 
 	Iterates through an array of services and calls Service.AddService on each member of the array.
 ]=]
-function Service.AddServices(services: { Singleton })
+function Service.AddServices(services: {unknown})
 	for _, service in services do
 		Service.AddService(service)
 	end
@@ -117,8 +116,8 @@ end
 
 	Iterates through children of a given instance, accesses any module scripts found, and calls Service.AddService if the module script returns a Singleton.
 ]=]
-function Service.AddServiceContainer(servicesContainer: Instance)
-	for _, serviceModule: ModuleScript in servicesContainer:GetChildren() do
+function Service.AddServiceContainer(servicesContainer: ModuleScript)
+	for _, serviceModule in servicesContainer:GetChildren() do
 		if not serviceModule:IsA("ModuleScript") then
 			print(`Skipped loading instance "{serviceModule.Name}" as it is not a ModuleScript`)
 			continue
@@ -127,7 +126,7 @@ function Service.AddServiceContainer(servicesContainer: Instance)
 		Promise.try(function()
 			return require(serviceModule)
 		end)
-			:andThen(function(service: Singleton)
+			:andThen(function(service: unknown)
 				Service.AddService(service)
 			end)
 			:catch(function(err)

@@ -52,9 +52,9 @@ Implements.None = ""
 
 function Implements.GetImplements(): { [Implements]: Implements }
 	return {
-		[Implements.OnStart] = Implements.OnStart,
-		[Implements.OnPlayerAdded] = Implements.OnPlayerAdded,
-		[Implements.OnCharacterAdded] = Implements.OnCharacterAdded,
+		[Implements.OnStart :: Implements] = Implements.OnStart :: Implements,
+		[Implements.OnPlayerAdded :: Implements] = Implements.OnPlayerAdded :: Implements,
+		[Implements.OnCharacterAdded :: Implements] = Implements.OnCharacterAdded :: Implements,
 	}
 end
 

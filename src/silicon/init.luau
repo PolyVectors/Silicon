@@ -36,7 +36,7 @@ Silicon._clientStarted = false
 	}
 	```
 ]=]
-Silicon["Service"] = {
+Silicon["ServiceContainer"] = {
 	Service = Service.Service,
 	AddService = Service.AddService,
 	AddServices = Service.AddServices,
@@ -61,14 +61,14 @@ Silicon["Service"] = {
 	}
 	```
 ]=]
-Silicon["Controller"] = {
+Silicon["ControllerContainer"] = {
 	Controller = Controller.Controller,
 	AddController = Controller.AddController,
 	AddControllers = Controller.AddControllers,
-	AddControllersFolder = Controller.AddControllersFolder,
+	AddControllersFolder = Controller.AddControllerContainer,
 }
 
-Silicon["Bridge"] = {
+Silicon["BridgeContainer"] = {
 	Bridge = Bridge.Bridge,
 	AddBridge = Bridge.AddBridge,
 	GetBridge = Bridge.GetBridge,
