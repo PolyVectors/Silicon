@@ -49,8 +49,8 @@ describe("instances.GuiObject", function()
 			child.Size = UDim2.new(0.5, 20, 0.5, 20)
 			child.Parent = parent
 
-			assert.are.same(extractVector2(parent.AbsolutePosition), {0, 0})
-			assert.are.same(extractVector2(child.AbsolutePosition), {0, 0})
+			assert.are.same(extractVector2(parent.AbsolutePosition), { 0, 0 })
+			assert.are.same(extractVector2(child.AbsolutePosition), { 0, 0 })
 		end)
 
 		it("should propagate position from a ScreenGui", function()
@@ -64,13 +64,10 @@ describe("instances.GuiObject", function()
 
 			local parentAbsolutePosition = parent.AbsolutePosition
 			local parentAbsoluteSize = parent.AbsoluteSize
-			assert.are.same(
-				extractVector2(parentAbsolutePosition),
-				{
-					0.1 * screenGuiSize.X + 50,
-					0.2 * screenGuiSize.Y + 100,
-				}
-			)
+			assert.are.same(extractVector2(parentAbsolutePosition), {
+				0.1 * screenGuiSize.X + 50,
+				0.2 * screenGuiSize.Y + 100,
+			})
 
 			local child = GuiObject:new()
 			child.Parent = parent
@@ -78,13 +75,10 @@ describe("instances.GuiObject", function()
 			child.Size = UDim2.new(2, 50, 4, 10)
 
 			local childAbsolutePosition = child.AbsolutePosition
-			assert.are.same(
-				extractVector2(childAbsolutePosition),
-				{
-					parentAbsolutePosition.X + 0.5 * parentAbsoluteSize.X,
-					parentAbsolutePosition.Y + 0.2 * parentAbsoluteSize.Y + 10,
-				}
-			)
+			assert.are.same(extractVector2(childAbsolutePosition), {
+				parentAbsolutePosition.X + 0.5 * parentAbsoluteSize.X,
+				parentAbsolutePosition.Y + 0.2 * parentAbsoluteSize.Y + 10,
+			})
 		end)
 	end)
 
@@ -97,8 +91,8 @@ describe("instances.GuiObject", function()
 			child.Size = UDim2.new(0.5, 20, 0.5, 20)
 			child.Parent = parent
 
-			assert.are.same(extractVector2(parent.AbsoluteSize), {0, 0})
-			assert.are.same(extractVector2(child.AbsoluteSize), {0, 0})
+			assert.are.same(extractVector2(parent.AbsoluteSize), { 0, 0 })
+			assert.are.same(extractVector2(child.AbsoluteSize), { 0, 0 })
 		end)
 
 		it("should propagate size from a ScreenGui", function()
@@ -110,26 +104,20 @@ describe("instances.GuiObject", function()
 			parent.Size = UDim2.new(0.5, 100, 0.1, 200)
 
 			local parentAbsoluteSize = parent.AbsoluteSize
-			assert.are.same(
-				extractVector2(parentAbsoluteSize),
-				{
-					0.5 * screenGuiSize.X + 100,
-					0.1 * screenGuiSize.Y + 200,
-				}
-			)
+			assert.are.same(extractVector2(parentAbsoluteSize), {
+				0.5 * screenGuiSize.X + 100,
+				0.1 * screenGuiSize.Y + 200,
+			})
 
 			local child = GuiObject:new()
 			child.Parent = parent
 			child.Size = UDim2.new(2, 50, 4, 10)
 
 			local childAbsoluteSize = child.AbsoluteSize
-			assert.are.same(
-				extractVector2(childAbsoluteSize),
-				{
-					2 * parentAbsoluteSize.X + 50,
-					4 * parentAbsoluteSize.Y + 10,
-				}
-			)
+			assert.are.same(extractVector2(childAbsoluteSize), {
+				2 * parentAbsoluteSize.X + 50,
+				4 * parentAbsoluteSize.Y + 10,
+			})
 		end)
 	end)
 end)

@@ -6,6 +6,7 @@ local Singleton = require(script.Parent)
 local Implements = require(script.Parent.Parent.Implements)
 local ImplementsDefinitions = require(script.Parent.Parent.Implements.Definitions)
 
+type Singleton = Singleton.Singleton
 type Implements = Implements.Implements
 
 --[=[
@@ -45,15 +46,15 @@ Controller.Controllers = {}
 ]=]
 function Controller.Controller(name: string): (
 	implements: { string | Implements }
-) -> (props: { [string | Implements]: (...any) -> any }) -> unknown
+) -> (props: { [string | Implements]: (...any) -> any }) -> Singleton
 	if RunService:IsServer() then
 		warn(
 			"[Silicon/Singleton/Service] Cannot create a controller on the server, this method will return a malformed controller."
 		)
 	end
 
-	return function(implements: { string | Implements })
-		return function(props: { [string]: (...string) -> nil })
+	return function(implements)
+		return function(props)
 			if RunService:IsClient() then
 				return Singleton._new(name, implements, props)
 			else
@@ -73,7 +74,7 @@ end
 
 	Adds a controller to the Controller.Controllers table while running recognised implementation methods under the Controller.
 ]=]
-function Controller.AddController(controller)
+function Controller.AddController(controller: Singleton)
 	if next(controller) == nil then
 		warn(
 			"[Silicon/Singleton/Controller] Cannot add a malformed controller, did you create the controller on the server?"
@@ -83,7 +84,7 @@ function Controller.AddController(controller)
 
 	Controller.Controllers[controller._name] = controller
 
-	for functionName, implementFunction in controller do
+	for functionName, implementFunction in pairs(controller) do
 		for _, implement in controller._implements do
 			if functionName == implement then
 				ImplementsDefinitions[functionName](implementFunction)
@@ -94,7 +95,7 @@ function Controller.AddController(controller)
 	return Controller.Controllers[controller._name]
 end
 
-function Controller.AddControllers(controllers: {[string]: unknown})
+function Controller.AddControllers(controllers: { [string]: unknown })
 	for _, controller in controllers do
 		Controller.AddController(controller)
 	end
@@ -120,7 +121,7 @@ function Controller.AddControllerContainer(controllerContainer: ModuleScript)
 		Promise.try(function()
 			return require(controllerModule)
 		end)
-			:andThen(function(controller: unknown)
+			:andThen(function(controller: Singleton)
 				Controller.AddController(controller)
 			end)
 			:catch(function(err)

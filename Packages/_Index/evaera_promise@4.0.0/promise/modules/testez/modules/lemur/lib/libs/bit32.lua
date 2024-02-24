@@ -12,6 +12,6 @@ else
 			return function()
 				error("Please install `bit32` to use bit32 features.", 2)
 			end
-		end
+		end,
 	})
 end

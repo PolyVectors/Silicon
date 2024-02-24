@@ -53,11 +53,11 @@ BaseInstance.properties.Changed = InstanceProperty.readOnly({
 })
 
 BaseInstance.properties.ChildAdded = InstanceProperty.readOnly({
-	getDefault = Signal.new
+	getDefault = Signal.new,
 })
 
 BaseInstance.properties.ChildRemoved = InstanceProperty.readOnly({
-	getDefault = Signal.new
+	getDefault = Signal.new,
 })
 
 BaseInstance.properties.Parent = InstanceProperty.normal({
@@ -369,8 +369,7 @@ function BaseInstance:new(...)
 	return instance
 end
 
-function BaseInstance:init(instance, ...)
-end
+function BaseInstance:init(instance, ...) end
 
 --[[
 	Create a new instance class with the given name.

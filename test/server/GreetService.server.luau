@@ -6,10 +6,10 @@ local AddService = Silicon.ServiceContainer.AddService
 
 local Implements = Silicon.Implements
 
-AddService (Service "GreetService" { Implements.OnPlayerAdded } {
+AddService(Service("GreetService")({ Implements.OnPlayerAdded })({
 	[Implements.OnPlayerAdded] = function(player: Player)
 		print(`Hello, {player.Name}!`)
 	end,
-})
+}))
 
-Silicon.Start()
+Silicon()

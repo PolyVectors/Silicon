@@ -15,7 +15,7 @@ describe("instances.TestService", function()
 		local writeSpy = spy.new(function(_, msg) end)
 
 		io.stderr = { -- luacheck: ignore
-			write = writeSpy
+			write = writeSpy,
 		}
 
 		instance:Error("Testing tests in a library for testing?")

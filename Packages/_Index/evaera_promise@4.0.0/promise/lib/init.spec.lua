@@ -535,9 +535,11 @@ return function()
 			local x, y, z
 			Promise.new(function(resolve, reject)
 				reject(1, 2, 3)
-			end):andThen(function() end):catch(function(a, b, c)
-				x, y, z = a, b, c
 			end)
+				:andThen(function() end)
+				:catch(function(a, b, c)
+					x, y, z = a, b, c
+				end)
 
 			expect(x).to.equal(1)
 			expect(y).to.equal(2)
@@ -556,11 +558,9 @@ return function()
 				count += 1
 			end)
 
-			root
-				:andThen(function()
-					count += 1
-				end)
-				:cancel()
+			root:andThen(function()
+				count += 1
+			end):cancel()
 
 			resolve("foo")
 

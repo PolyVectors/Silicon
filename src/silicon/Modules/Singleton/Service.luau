@@ -7,6 +7,7 @@ local Implements = require(script.Parent.Parent.Implements)
 local ImplementsDefinitions = require(script.Parent.Parent.Implements.Definitions)
 
 type Implements = Implements.Implements
+type Singleton = Singleton.Singleton
 
 --[=[
     @server
@@ -45,15 +46,15 @@ Service.Services = {}
 ]=]
 function Service.Service(name: string): (
 	implements: { string | Implements }
-) -> (props: { [string | Implements]: (...any) -> any | any }) -> unknown
+) -> (props: { [string | Implements]: (...any) -> any | any }) -> Singleton | {}
 	if RunService:IsClient() then
 		warn(
 			"[Silicon/Singleton/Service] Cannot create a service on the client, this method will return a malformed service."
 		)
 	end
 
-	return function(implements: { string | Implements })
-		return function(props: { [string]: (...any) -> nil })
+	return function(implements)
+		return function(props)
 			if RunService:IsServer() then
 				return Singleton._new(name, implements, props)
 			else
@@ -73,15 +74,15 @@ end
 
 	Adds a service to the Service.Services table while running recognised implementation methods under the Service.
 ]=]
-function Service.AddService(service)
-	if service == {} then
+function Service.AddService(service: Singleton)
+	if next(service) == nil then
 		warn("[Silicon/Singleton/Service] Cannot add a malformed service, did you create the service on the client?")
 		return
 	end
 
 	Service.Services[service._name] = service
 
-	for functionName, implementFunction in service do
+	for functionName, implementFunction in pairs(service) do
 		for _, implement in service._implements do
 			if functionName == implement then
 				ImplementsDefinitions[functionName](implementFunction)
@@ -100,7 +101,7 @@ end
 
 	Iterates through an array of services and calls Service.AddService on each member of the array.
 ]=]
-function Service.AddServices(services: {unknown})
+function Service.AddServices(services: { Singleton })
 	for _, service in services do
 		Service.AddService(service)
 	end
@@ -126,7 +127,7 @@ function Service.AddServiceContainer(servicesContainer: ModuleScript)
 		Promise.try(function()
 			return require(serviceModule)
 		end)
-			:andThen(function(service: unknown)
+			:andThen(function(service: Singleton)
 				Service.AddService(service)
 			end)
 			:catch(function(err)

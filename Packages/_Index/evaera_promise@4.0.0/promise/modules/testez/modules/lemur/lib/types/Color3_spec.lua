@@ -6,7 +6,7 @@ local function extractColors(color)
 	return {
 		color.r,
 		color.g,
-		color.b
+		color.b,
 	}
 end
 

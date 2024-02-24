@@ -39,7 +39,6 @@ function metatable:__newindex(key, value)
 	error(string.format("%q is not a valid member of RenderSettings", tostring(key)), 2)
 end
 
-
 function RenderSettings.new()
 	local internalInstance = {
 		QualityLevel = 0,

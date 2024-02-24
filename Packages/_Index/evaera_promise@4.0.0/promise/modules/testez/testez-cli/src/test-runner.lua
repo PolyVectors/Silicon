@@ -54,18 +54,12 @@ local completed, suitePassed = xpcall(function()
 	end
 
 	if #testContainers == 0 then
-		print(string.format(
-			"No tests found. Did you give them the CollectionService tag %q?",
-			TEST_CONTAINER_TAG
-		))
+		print(string.format("No tests found. Did you give them the CollectionService tag %q?", TEST_CONTAINER_TAG))
 
 		return true
 	end
 
-	local testResults = TestEZ.TestBootstrap:run(
-		testContainers,
-		TestEZ.Reporters.TextReporter
-	)
+	local testResults = TestEZ.TestBootstrap:run(testContainers, TestEZ.Reporters.TextReporter)
 
 	return testResults.failureCount == 0
 end, debug.traceback)

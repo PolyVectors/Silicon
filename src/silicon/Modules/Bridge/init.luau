@@ -4,11 +4,30 @@ local Promise = require(script.Parent.Parent.Parent.promise)
 local EventType = require(script.EventType)
 type EventType = EventType.EventType
 
+type BridgeImpl = {
+	__index: BridgeImpl,
+	Bridges: {},
+
+	Bridge: (name: string) -> (eventTypes: { EventType }) -> (bridgeEvents: { [EventType]: { string } }) -> Bridge,
+	AddBridge: (bridge: Bridge) -> (),
+	AddBridgeContainer: (bridgeContainer: Folder) -> (),
+	AddBridges: (bridges: { Bridge }) -> (),
+	GetBridge: (name: string) -> Bridge?,
+
+	FireEvent: (self: Bridge, eventType: EventType, name: string) -> (args: { [number]: any }) -> nil,
+	WhenFired: (self: Bridge, eventType: EventType, name: string) -> (fn: (...any) -> nil) -> nil,
+}
+
+type Bridge = typeof(setmetatable(
+	{} :: { _name: string, _eventTypes: { EventType }, _bridgeEvents: { [EventType]: { string } } },
+	{} :: BridgeImpl
+))
+
 --[=[
 	@class Bridge
 	A class that handles networking under a unique "bridge" model.
 ]=]
-local Bridge = {}
+local Bridge: BridgeImpl = {} :: BridgeImpl
 Bridge.__index = Bridge
 
 Bridge.Bridges = {}
@@ -21,11 +40,9 @@ local function createSubFolder(name: string, parent: Instance)
 	end
 end
 
-Bridge.Bridge = function(
-	name: string
-): (eventTypes: { EventType }) -> (bridgeEvents: { [EventType]: { string } }) -> unknown
-	return function(eventTypes: { EventType })
-		return function(bridgeEvents: { [EventType]: { string } })
+Bridge.Bridge = function(name)
+	return function(eventTypes)
+		return function(bridgeEvents)
 			return setmetatable({
 				_name = name,
 				_eventTypes = eventTypes,
@@ -41,7 +58,7 @@ function Bridge.AddBridge(bridge)
 		return
 	end
 
-	for _, eventType in bridge._eventTypes do
+	for _, eventType: EventType in bridge._eventTypes do
 		if bridge._bridgeEvents[eventType] ~= nil and EventType[eventType] ~= nil then
 			createSubFolder("_Silicon/Bridges", ReplicatedStorage)
 			createSubFolder(bridge._name, ReplicatedStorage["_Silicon/Bridges"])
@@ -56,7 +73,7 @@ function Bridge.AddBridge(bridge)
 	end
 end
 
-function Bridge.AddBridgeContainer(bridgeContainer: ModuleScript)
+function Bridge.AddBridgeContainer(bridgeContainer)
 	for _, bridgeModule in bridgeContainer:GetChildren() do
 		if not bridgeModule:IsA("ModuleScript") then
 			print(`Skipped loading instance "{bridgeModule.Name}" as it is not a ModuleScript`)
@@ -66,7 +83,7 @@ function Bridge.AddBridgeContainer(bridgeContainer: ModuleScript)
 		Promise.try(function()
 			return require(bridgeModule)
 		end)
-			:andThen(function(bridge: unknown)
+			:andThen(function(bridge: Bridge)
 				Bridge.AddBridge(bridge)
 			end)
 			:catch(function(err)
@@ -75,16 +92,18 @@ function Bridge.AddBridgeContainer(bridgeContainer: ModuleScript)
 	end
 end
 
-function Bridge.AddBridges(bridges: { unknown })
+function Bridge.AddBridges(bridges: { Bridge })
 	for _, bridge in bridges do
 		Bridge.AddBridge(bridge)
 	end
 end
 
-function Bridge.GetBridge(name: string): unknown?
+function Bridge.GetBridge(name)
 	if ReplicatedStorage["_Silicon/Bridges"] and ReplicatedStorage["_Silicon/Bridges"][name] ~= nil then
 		local newBridge = {}
+
 		newBridge._name = name
+		newBridge._eventTypes = {}
 
 		for _, eventTypeFolder in ReplicatedStorage["_Silicon/Bridges"][name]:GetChildren() do
 			if ReplicatedStorage["_Silicon/Bridges"][name][eventTypeFolder.Name] ~= nil then
@@ -105,11 +124,11 @@ function Bridge.GetBridge(name: string): unknown?
 		return setmetatable(newBridge, Bridge)
 	end
 
-  return nil
+	return nil
 end
 
-function Bridge.FireEvent(self, eventType: EventType, name: string): (args: { [number]: any }) -> nil
-	return function(args: { [number]: any })
+function Bridge:FireEvent(eventType, name)
+	return function(args)
 		local remoteEvent: RemoteEvent = ReplicatedStorage["_Silicon/Bridges"][self._name][eventType][name]
 
 		if eventType == EventType.ServerToClient then
@@ -120,7 +139,7 @@ function Bridge.FireEvent(self, eventType: EventType, name: string): (args: { [n
 	end
 end
 
-function Bridge.WhenFired(self, eventType: EventType, name: string): (fn: (...any) -> nil) -> nil
+function Bridge:WhenFired(eventType: EventType, name: string): (fn: (...any) -> nil) -> nil
 	return function(fn: (...any) -> nil)
 		local remoteEvent: RemoteEvent = ReplicatedStorage["_Silicon/Bridges"][self._name][eventType][name]
 

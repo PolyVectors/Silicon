@@ -40,7 +40,7 @@ describe("instances.TextService", function()
 			local instance = TextService:new()
 			local result = instance:GetTextSize("VERY LARGE TEXT", 36, Font.Legacy, Vector2.new(1, 1))
 
-			assert.same({result.X, result.Y}, {1, 1})
+			assert.same({ result.X, result.Y }, { 1, 1 })
 		end)
 	end)
 end)

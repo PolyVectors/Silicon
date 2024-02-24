@@ -25,7 +25,7 @@ UserInputService.properties.InputChanged = InstanceProperty.readOnly({
 UserInputService.properties.MouseBehavior = InstanceProperty.normal({
 	getDefault = function()
 		return MouseBehavior.Default
-	end
+	end,
 })
 
 return UserInputService

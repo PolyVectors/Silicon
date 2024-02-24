@@ -43,33 +43,24 @@ describe("instances.ScrollingFrame", function()
 
 			instance.ScrollingEnabled = true
 			instance.ScrollingDirection = ScrollingDirection.XY
-			assert.same(
-				{
-					screenGuiSize.X - instance.ScrollBarThickness,
-					screenGuiSize.Y - instance.ScrollBarThickness,
-				},
-				extractVector2(instance.AbsoluteWindowSize)
-			)
+			assert.same({
+				screenGuiSize.X - instance.ScrollBarThickness,
+				screenGuiSize.Y - instance.ScrollBarThickness,
+			}, extractVector2(instance.AbsoluteWindowSize))
 
 			instance.ScrollingDirection = ScrollingDirection.X
 			instance.ScrollingEnabled = true
-			assert.same(
-				{
-					screenGuiSize.X - instance.ScrollBarThickness,
-					screenGuiSize.Y,
-				},
-				extractVector2(instance.AbsoluteWindowSize)
-			)
+			assert.same({
+				screenGuiSize.X - instance.ScrollBarThickness,
+				screenGuiSize.Y,
+			}, extractVector2(instance.AbsoluteWindowSize))
 
 			instance.ScrollingDirection = ScrollingDirection.Y
 			instance.ScrollingEnabled = true
-			assert.same(
-				{
-					screenGuiSize.X,
-					screenGuiSize.Y - instance.ScrollBarThickness,
-				},
-				extractVector2(instance.AbsoluteWindowSize)
-			)
+			assert.same({
+				screenGuiSize.X,
+				screenGuiSize.Y - instance.ScrollBarThickness,
+			}, extractVector2(instance.AbsoluteWindowSize))
 		end)
 	end)
 end)

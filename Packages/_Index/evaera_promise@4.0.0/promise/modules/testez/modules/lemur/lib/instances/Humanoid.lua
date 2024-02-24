@@ -12,7 +12,7 @@ function Humanoid:init(instance)
 end
 
 Humanoid.properties.Died = InstanceProperty.readOnly({
-	getDefault = Signal.new
+	getDefault = Signal.new,
 })
 
 Humanoid.properties.Health = InstanceProperty.normal({
@@ -23,10 +23,7 @@ Humanoid.properties.Health = InstanceProperty.normal({
 	set = function(self, key, value)
 		validateType("Health", value, "number")
 		local instance = getmetatable(self).instance
-		local health = math.min(
-			math.max(0, value),
-			self.MaxHealth
-		)
+		local health = math.min(math.max(0, value), self.MaxHealth)
 
 		instance.properties.Health = health
 

@@ -53,23 +53,21 @@ end
 
 function UDim2.new(...)
 	if select("#", ...) == 0 then
-		return UDim2.new(
-			UDim.new(0, 0),
-			UDim.new(0, 0)
-		)
+		return UDim2.new(UDim.new(0, 0), UDim.new(0, 0))
 	end
 
 	if select("#", ...) == 4 then
 		local xScale, xOffset, yScale, yOffset = ...
-		if type(xScale) ~= "number" or type(xOffset) ~= "number" or
-			type(yScale) ~= "number" or type(yOffset) ~= "number" then
+		if
+			type(xScale) ~= "number"
+			or type(xOffset) ~= "number"
+			or type(yScale) ~= "number"
+			or type(yOffset) ~= "number"
+		then
 			error("UDim2.new(xScale, xOffset, yScale, yOffset) takes in 4 numbers", 2)
 		end
 
-		return UDim2.new(
-			UDim.new(xScale, xOffset),
-			UDim.new(yScale, yOffset)
-		)
+		return UDim2.new(UDim.new(xScale, xOffset), UDim.new(yScale, yOffset))
 	end
 
 	local xDim, yDim = ...

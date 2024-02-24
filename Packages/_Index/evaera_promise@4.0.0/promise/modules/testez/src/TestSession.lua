@@ -25,7 +25,7 @@ function TestSession.new(plan)
 		results = TestResults.new(plan),
 		nodeStack = {},
 		contextStack = {},
-		hasFocusNodes = false
+		hasFocusNodes = false,
 	}
 
 	setmetatable(self, TestSession)
@@ -190,7 +190,7 @@ end
 	way.
 ]]
 function TestSession:addDummyError(phrase, message)
-	self:pushNode({type = TestEnum.NodeType.It, phrase = phrase})
+	self:pushNode({ type = TestEnum.NodeType.It, phrase = phrase })
 	self:setError(message)
 	self:popNode()
 	self.nodeStack[#self.nodeStack].status = TestEnum.TestStatus.Failure

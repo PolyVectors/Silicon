@@ -253,7 +253,7 @@ local function makeImport(rootPath)
 			local currentDirectory = currentPath:pop()
 			local relativeModulePath = currentDirectory:push(modulePath)
 
-			local pathsToTry = {relativeModulePath}
+			local pathsToTry = { relativeModulePath }
 
 			if Path.fromString(modulePath):getExtension() == nil then
 				table.insert(pathsToTry, relativeModulePath:addExtension(".lua"))
@@ -307,7 +307,8 @@ local function makeImport(rootPath)
 			end
 
 			-- We didn't find any modules.
-			local message = string.format("Couldn't import %q from file %s, tried:\n\t%s",
+			local message = string.format(
+				"Couldn't import %q from file %s, tried:\n\t%s",
 				modulePath,
 				tostring(currentPath),
 				table.concat(pathsToTryAsStrings, "\n\t")

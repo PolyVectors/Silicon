@@ -27,7 +27,7 @@ describe("functions.settings", function()
 					FFTest = true,
 					FFTest2 = true,
 					FFDoesSomethingHappen = false,
-				}
+				},
 			})
 
 			local instance = settings()
@@ -42,7 +42,7 @@ describe("functions.settings", function()
 					FFTest = true,
 					FFTest2 = true,
 					FFDoesSomethingHappen = false,
-				}
+				},
 			})
 			local instance = settings()
 

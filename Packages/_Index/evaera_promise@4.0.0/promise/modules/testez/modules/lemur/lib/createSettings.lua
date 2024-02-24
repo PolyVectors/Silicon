@@ -47,7 +47,7 @@ end
 function Settings.new(settings)
 	local internalInstance = {
 		settings = settings or {},
-		Rendering = RenderSettings.new()
+		Rendering = RenderSettings.new(),
 	}
 
 	internalInstance.settings.flags = internalInstance.settings.flags or {}

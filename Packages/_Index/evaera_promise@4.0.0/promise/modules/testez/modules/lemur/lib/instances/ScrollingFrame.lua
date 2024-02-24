@@ -26,10 +26,7 @@ ScrollingFrame.properties.AbsoluteWindowSize = InstanceProperty.readOnly({
 			marginY = thickness
 		end
 
-		return Vector2.new(
-			math.max(0, size.X - marginX),
-			math.max(0, size.Y - marginY)
-		)
+		return Vector2.new(math.max(0, size.X - marginX), math.max(0, size.Y - marginY))
 	end,
 })
 
@@ -77,16 +74,12 @@ ScrollingFrame.properties.VerticalScrollBarPosition = InstanceProperty.enum(Vert
 
 function ScrollingFrame.prototype:_canScrollHorizontal()
 	local scrollDir = self.ScrollingDirection
-	return self.ScrollingEnabled and
-		(scrollDir == ScrollingDirection.X or
-		scrollDir == ScrollingDirection.XY)
+	return self.ScrollingEnabled and (scrollDir == ScrollingDirection.X or scrollDir == ScrollingDirection.XY)
 end
 
 function ScrollingFrame.prototype:_canScrollVertical()
 	local scrollDir = self.ScrollingDirection
-	return self.ScrollingEnabled and
-		(scrollDir == ScrollingDirection.Y or
-		scrollDir == ScrollingDirection.XY)
+	return self.ScrollingEnabled and (scrollDir == ScrollingDirection.Y or scrollDir == ScrollingDirection.XY)
 end
 
 return ScrollingFrame

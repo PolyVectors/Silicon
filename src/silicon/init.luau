@@ -89,4 +89,18 @@ function Silicon.Start()
 	end)
 end
 
+setmetatable(Silicon, {
+	__call = function(self)
+		return Promise.new(function(resolve)
+			if RunService:IsClient() then
+				Silicon._serverStarted = true
+			else
+				Silicon._clientStarted = true
+			end
+
+			resolve()
+		end)
+	end,
+})
+
 return Silicon

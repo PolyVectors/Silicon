@@ -37,15 +37,11 @@ end
 function Rect.new(...)
 	if select("#", ...) == 4 then
 		local minX, minY, maxX, maxY = ...
-		if type(minX) ~= "number" or type(minY) ~= "number" or
-			type(maxX) ~= "number" or type(maxY) ~= "number" then
+		if type(minX) ~= "number" or type(minY) ~= "number" or type(maxX) ~= "number" or type(maxY) ~= "number" then
 			error("Rect.new(minX, minY, maxX, maxY) takes in 4 numbers", 2)
 		end
 
-		return Rect.new(
-			Vector2.new(minX, minY),
-			Vector2.new(maxX, maxY)
-		)
+		return Rect.new(Vector2.new(minX, minY), Vector2.new(maxX, maxY))
 	end
 
 	local min, max = ...

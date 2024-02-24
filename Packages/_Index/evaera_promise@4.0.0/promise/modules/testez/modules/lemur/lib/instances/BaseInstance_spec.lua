@@ -24,8 +24,7 @@ describe("instances.BaseInstance", function()
 	it("should error when indexing invalid instances", function()
 		local instance = BaseInstance:new()
 
-		local function nop()
-		end
+		local function nop() end
 
 		assert.has.errors(function()
 			nop(instance.neverWillEXIST)

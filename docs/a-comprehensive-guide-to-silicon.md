@@ -76,3 +76,10 @@ Silicon.Start()
 ## Bridges
 Bridges are a concept unique to Silicon which essentially handle networking between Services and Controllers.
 Here is example of basic usage of bridges to handle client to server communication:
+
+```lua
+local Players = game:GetService("Players")
+local Silicon = require(Path.To.Silicon)
+
+local Bridge 
+```

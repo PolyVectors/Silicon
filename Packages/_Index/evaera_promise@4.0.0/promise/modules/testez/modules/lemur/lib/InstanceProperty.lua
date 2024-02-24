@@ -54,7 +54,10 @@ function InstanceProperty.enum(enum, config)
 			end
 
 			if value.EnumType ~= enum then
-				error(string.format("Expected enum from %s, got enum from %s", tostring(enum), tostring(value.EnumType)), 2)
+				error(
+					string.format("Expected enum from %s, got enum from %s", tostring(enum), tostring(value.EnumType)),
+					2
+				)
 			end
 
 			getmetatable(self).instance.properties[key] = value

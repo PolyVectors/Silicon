@@ -8,7 +8,6 @@ return function()
 	end)
 
 	describe("with the same description", function()
-		it("should also run this", function()
-		end)
+		it("should also run this", function() end)
 	end)
 end

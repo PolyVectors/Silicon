@@ -17,14 +17,14 @@ describe("types.Rect", function()
 		local r = Rect.new(Vector2.new(10, 20), Vector2.new(50, 100))
 
 		assert.not_nil(r)
-		assert.are.same({10, 20, 50, 100, 40, 80}, extractRect(r))
+		assert.are.same({ 10, 20, 50, 100, 40, 80 }, extractRect(r))
 	end)
 
 	it("should have a constructor with four parameters", function()
 		local r = Rect.new(10, 20, 50, 100)
 
 		assert.not_nil(r)
-		assert.are.same({10, 20, 50, 100, 40, 80}, extractRect(r))
+		assert.are.same({ 10, 20, 50, 100, 40, 80 }, extractRect(r))
 	end)
 
 	it("should be type Rect", function()

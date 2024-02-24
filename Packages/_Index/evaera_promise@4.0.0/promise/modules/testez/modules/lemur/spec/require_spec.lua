@@ -45,8 +45,7 @@ describe("Lemur", function()
 
 		local root = habitat:loadFromFs("spec/require")
 
-		local function nop()
-		end
+		local function nop() end
 
 		assert.has.errors(function()
 			nop(root.NOPE_NOT_HERE)

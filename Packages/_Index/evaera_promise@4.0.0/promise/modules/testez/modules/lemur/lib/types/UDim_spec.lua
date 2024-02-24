@@ -9,14 +9,14 @@ describe("types.UDim", function()
 		local udim = UDim.new()
 
 		assert.not_nil(udim)
-		assert.are.same({0, 0}, extractValues(udim))
+		assert.are.same({ 0, 0 }, extractValues(udim))
 	end)
 
 	it("should have a constructor with two parameters", function()
 		local udim = UDim.new(1, 200)
 
 		assert.not_nil(udim)
-		assert.are.same({1, 200}, extractValues(udim))
+		assert.are.same({ 1, 200 }, extractValues(udim))
 	end)
 
 	it("should throw when bad params are passed to the constructor", function()
@@ -35,7 +35,7 @@ describe("types.UDim", function()
 		local udim = udimA + udimB
 
 		assert.not_nil(udim)
-		assert.are.same({101, 700}, extractValues(udim))
+		assert.are.same({ 101, 700 }, extractValues(udim))
 	end)
 
 	it("should equal another UDim with the same scale and offset", function()

@@ -23,8 +23,7 @@ function GuiService.prototype:SetGlobalGuiInset(x1, y1, x2, y2)
 	validateType("y2", y2, "number")
 end
 
-function GuiService.prototype:SafeZoneOffsetsChanged()
-end
+function GuiService.prototype:SafeZoneOffsetsChanged() end
 
 function GuiService.prototype:IsTenFootInterface()
 	return false

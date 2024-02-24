@@ -10,21 +10,21 @@ describe("types.UDim2", function()
 		local udim = UDim2.new()
 
 		assert.not_nil(udim)
-		assert.are.same({0, 0, 0, 0}, extractUDim2(udim))
+		assert.are.same({ 0, 0, 0, 0 }, extractUDim2(udim))
 	end)
 
 	it("should have a constructor with two parameters", function()
 		local udim = UDim2.new(UDim.new(10, 20), UDim.new(50, 100))
 
 		assert.not_nil(udim)
-		assert.are.same({10, 20, 50, 100}, extractUDim2(udim))
+		assert.are.same({ 10, 20, 50, 100 }, extractUDim2(udim))
 	end)
 
 	it("should have a constructor with four parameters", function()
 		local udim = UDim2.new(10, 20, 50, 100)
 
 		assert.not_nil(udim)
-		assert.are.same({10, 20, 50, 100}, extractUDim2(udim))
+		assert.are.same({ 10, 20, 50, 100 }, extractUDim2(udim))
 	end)
 
 	it("should throw when bad params are passed to the 4-param constructor", function()
@@ -66,7 +66,6 @@ describe("types.UDim2", function()
 		assert.equals(udim.X, udim.Width)
 	end)
 
-
 	it("should have property Y equal property Height", function()
 		local udim = UDim2.new(10, 20, 50, 100)
 
@@ -80,7 +79,7 @@ describe("types.UDim2", function()
 		local udim = udimA + udimB
 
 		assert.not_nil(udim)
-		assert.are.same({30, 70, 150, 700}, extractUDim2(udim))
+		assert.are.same({ 30, 70, 150, 700 }, extractUDim2(udim))
 	end)
 
 	it("should equal another UDim2 with the same values", function()
@@ -110,8 +109,8 @@ describe("types.UDim2", function()
 		local udimA = UDim2.new(0, 100, 200, 300)
 		local udimB = UDim2.new(100, 200, 300, 400)
 
-		assert.are.same({0, 100, 200, 300}, extractUDim2(udimA:Lerp(udimB, 0)))
-		assert.are.same({50, 150, 250, 350}, extractUDim2(udimA:Lerp(udimB, 0.5)))
-		assert.are.same({100, 200, 300, 400}, extractUDim2(udimA:Lerp(udimB, 1)))
+		assert.are.same({ 0, 100, 200, 300 }, extractUDim2(udimA:Lerp(udimB, 0)))
+		assert.are.same({ 50, 150, 250, 350 }, extractUDim2(udimA:Lerp(udimB, 0.5)))
+		assert.are.same({ 100, 200, 300, 400 }, extractUDim2(udimA:Lerp(udimB, 1)))
 	end)
 end)
