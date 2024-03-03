@@ -30,6 +30,17 @@ You can also build the documentation yourself by cloning the repository and runn
 > [!WARNING]
 > Documentation for Silicon is still incomplete.
 
+## Features
+- [x] Silicon.Start()
+- [ ] Silicon.OnStart()
+- [x] Singletons
+- [x] Implementations
+- [x] Services
+- [x] Controllers
+- [ ] Components
+- [x] Bridges (networking)
+- [ ] Middleware
+
 ##
 <!--moonwave-hide-before-this-line-->
 
