@@ -4,19 +4,20 @@ local function extractValues(v)
 	return { v.X, v.Y }
 end
 
+
 describe("types.Vector2", function()
 	it("should have an empty constructor", function()
 		local v = Vector2.new()
 
 		assert.not_nil(v)
-		assert.are.same({ 0, 0 }, extractValues(v))
+		assert.are.same({0, 0}, extractValues(v))
 	end)
 
 	it("should have a constructor with two parameters", function()
 		local v = Vector2.new(1, 200)
 
 		assert.not_nil(v)
-		assert.are.same({ 1, 200 }, extractValues(v))
+		assert.are.same({1, 200}, extractValues(v))
 	end)
 
 	it("should throw when bad params are passed to the constructor", function()
@@ -35,7 +36,7 @@ describe("types.Vector2", function()
 		local v = vectorA + vectorB
 
 		assert.not_nil(v)
-		assert.are.same({ 101, 700 }, extractValues(v))
+		assert.are.same({101, 700}, extractValues(v))
 	end)
 
 	it("should subtract another Vector2", function()
@@ -44,7 +45,7 @@ describe("types.Vector2", function()
 		local v = vectorA - vectorB
 
 		assert.not_nil(v)
-		assert.are.same({ -99, -300 }, extractValues(v))
+		assert.are.same({-99, -300}, extractValues(v))
 	end)
 
 	it("should multiply by another Vector2", function()
@@ -53,7 +54,7 @@ describe("types.Vector2", function()
 		local v = vectorA * vectorB
 
 		assert.not_nil(v)
-		assert.are.same({ 2, 25 }, extractValues(v))
+		assert.are.same({2, 25}, extractValues(v))
 	end)
 
 	it("should multiply by a number", function()
@@ -61,7 +62,7 @@ describe("types.Vector2", function()
 		local v = vectorA * 3
 
 		assert.not_nil(v)
-		assert.are.same({ 3, 150 }, extractValues(v))
+		assert.are.same({3, 150}, extractValues(v))
 	end)
 
 	it("should multiply by a number reversed", function()
@@ -69,7 +70,7 @@ describe("types.Vector2", function()
 		local v = 3 * vectorA
 
 		assert.not_nil(v)
-		assert.are.same({ 3, 150 }, extractValues(v))
+		assert.are.same({3, 150}, extractValues(v))
 	end)
 
 	it("should throw an error when multiplied by an incompatible type", function()
@@ -84,7 +85,7 @@ describe("types.Vector2", function()
 		local v = vectorA / vectorB
 
 		assert.not_nil(v)
-		assert.are.same({ 0.5, 50 }, extractValues(v))
+		assert.are.same({0.5, 50}, extractValues(v))
 	end)
 
 	it("should divide by a number", function()
@@ -92,7 +93,7 @@ describe("types.Vector2", function()
 		local v = vectorA / 4
 
 		assert.not_nil(v)
-		assert.are.same({ 0.25, 12.5 }, extractValues(v))
+		assert.are.same({0.25, 12.5}, extractValues(v))
 	end)
 
 	it("should divide by a number reversed", function()
@@ -100,7 +101,7 @@ describe("types.Vector2", function()
 		local v = 4 / vectorA
 
 		assert.not_nil(v)
-		assert.are.same({ 0.25, 12.5 }, extractValues(v))
+		assert.are.same({0.25, 12.5}, extractValues(v))
 	end)
 
 	it("should throw an error when divided by an incompatible type", function()

@@ -6,14 +6,9 @@ local failing = script.Parent.failing
 local function check(test, pass)
 	TestEZ.run(test, function(results)
 		if pass then
-			assert(
-				#results.errors == 0,
-				"Expected no errors, got "
-					.. tostring(results.errors[1])
-					.. " plus "
-					.. tostring(#results.errors - 1)
-					.. " more."
-			)
+			assert(#results.errors == 0,
+				"Expected no errors, got " .. tostring(results.errors[1]) ..
+				" plus " .. tostring(#results.errors - 1) .. " more.")
 		else
 			assert(#results.errors > 0, "Expected some errors, got none.")
 		end

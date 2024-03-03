@@ -61,7 +61,7 @@ return {
 			"planning d test4",
 			"planning d test4 test5",
 			"planning d test4 test6",
-			"planning d test4", -- Order doesn't actually matter for this test.
+			"planning d test4",  -- Order doesn't actually matter for this test.
 			"planning d test4 test5",
 			"planning d test4 test7",
 		}))
@@ -80,7 +80,7 @@ return {
 			"planning d test4",
 			"planning d test4 test5",
 			"planning d test4 test6",
-			"planning d test4", -- Order doesn't actually matter for this test.
+			"planning d test4",  -- Order doesn't actually matter for this test.
 			"planning d test4 test5",
 			"planning d test4 test7",
 		}, true))

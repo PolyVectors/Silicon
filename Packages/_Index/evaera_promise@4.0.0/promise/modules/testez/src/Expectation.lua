@@ -76,7 +76,7 @@ function Expectation.new(value)
 	local self = {
 		value = value,
 		successCondition = true,
-		condition = false,
+		condition = false
 	}
 
 	setmetatable(self, Expectation)
@@ -132,9 +132,12 @@ end
 function Expectation:a(typeName)
 	local result = (type(self.value) == typeName) == self.successCondition
 
-	local message = formatMessage(
-		self.successCondition,
-		("Expected value of type %q, got value %q of type %s"):format(typeName, tostring(self.value), type(self.value)),
+	local message = formatMessage(self.successCondition,
+		("Expected value of type %q, got value %q of type %s"):format(
+			typeName,
+			tostring(self.value),
+			type(self.value)
+		),
 		("Expected value not of type %q, got value %q of type %s"):format(
 			typeName,
 			tostring(self.value),
@@ -154,10 +157,13 @@ end
 function Expectation:ok()
 	local result = (self.value ~= nil) == self.successCondition
 
-	local message = formatMessage(
-		self.successCondition,
-		("Expected value %q to be non-nil"):format(tostring(self.value)),
-		("Expected value %q to be nil"):format(tostring(self.value))
+	local message = formatMessage(self.successCondition,
+		("Expected value %q to be non-nil"):format(
+			tostring(self.value)
+		),
+		("Expected value %q to be nil"):format(
+			tostring(self.value)
+		)
 	)
 
 	assertLevel(result, message, 3)
@@ -172,15 +178,17 @@ end
 function Expectation:equal(otherValue)
 	local result = (self.value == otherValue) == self.successCondition
 
-	local message = formatMessage(
-		self.successCondition,
+	local message = formatMessage(self.successCondition,
 		("Expected value %q (%s), got %q (%s) instead"):format(
 			tostring(otherValue),
 			type(otherValue),
 			tostring(self.value),
 			type(self.value)
 		),
-		("Expected anything but value %q (%s)"):format(tostring(otherValue), type(otherValue))
+		("Expected anything but value %q (%s)"):format(
+			tostring(otherValue),
+			type(otherValue)
+		)
 	)
 
 	assertLevel(result, message, 3)
@@ -202,10 +210,17 @@ function Expectation:near(otherValue, limit)
 
 	local result = (math.abs(self.value - otherValue) <= limit) == self.successCondition
 
-	local message = formatMessage(
-		self.successCondition,
-		("Expected value to be near %f (within %f) but got %f instead"):format(otherValue, limit, self.value),
-		("Expected value to not be near %f (within %f) but got %f instead"):format(otherValue, limit, self.value)
+	local message = formatMessage(self.successCondition,
+		("Expected value to be near %f (within %f) but got %f instead"):format(
+			otherValue,
+			limit,
+			self.value
+		),
+		("Expected value to not be near %f (within %f) but got %f instead"):format(
+			otherValue,
+			limit,
+			self.value
+		)
 	)
 
 	assertLevel(result, message, 3)
@@ -221,10 +236,11 @@ function Expectation:throw()
 	local ok, err = pcall(self.value)
 	local result = ok ~= self.successCondition
 
-	local message = formatMessage(
-		self.successCondition,
+	local message = formatMessage(self.successCondition,
 		"Expected function to throw an error, but it did not.",
-		("Expected function to succeed, but it threw an error: %s"):format(tostring(err))
+		("Expected function to succeed, but it threw an error: %s"):format(
+			tostring(err)
+		)
 	)
 
 	assertLevel(result, message, 3)

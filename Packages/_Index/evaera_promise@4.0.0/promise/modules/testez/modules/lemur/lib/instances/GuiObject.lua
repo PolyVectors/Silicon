@@ -40,7 +40,10 @@ GuiObject.properties.AbsoluteSize = InstanceProperty.readOnly({
 			scaleY = parentSize.Y
 		end
 
-		return Vector2.new(scaleX * size.X.Scale + size.X.Offset, scaleY * size.Y.Scale + size.Y.Offset)
+		return Vector2.new(
+			scaleX * size.X.Scale + size.X.Offset,
+			scaleY * size.Y.Scale + size.Y.Offset
+		)
 	end,
 })
 

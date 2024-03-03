@@ -1,31 +1,6 @@
 {
-  "name": "silicon",
-  "tree": {
-    "$className": "DataModel",
-    
-    "ReplicatedStorage": {
-      "silicon": {
-        "$path": "src/silicon"
-      },
-      "promise": {
-        "$path": "Packages/_Index/evaera_promise@4.0.0/promise/lib" 
-      },
-      "Shared": {
-        "$path": "test/shared"
-      }
-    },
-    "ServerScriptService": {
-      "Server": {
-        "$path": "test/server"
-      }
-    },
-    "StarterPlayer": {
-      "StarterPlayerScripts": {
-        "Client": {
-          "$path": "test/client"
-        }
-      }
-    }
-  },
-  "emitLegacyScripts": true
+	"name": "silicon",
+	"tree": {
+		"$path": "src/"
+	}
 }
