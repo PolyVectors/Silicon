@@ -1,6 +1,6 @@
 {
 	"name": "silicon",
 	"tree": {
-		"$path": "src/"
+		"$path": "src"
 	}
 }
